@@ -256,8 +256,7 @@ public class AlertView: UIViewController, UITextFieldDelegate, UIViewControllerT
     
     override open func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-        
-        layoutSubView()
+        if owner == nil { layoutSubView() }
     }
     
     override open func viewDidAppear(_ animated: Bool) {
@@ -335,16 +334,15 @@ public class AlertView: UIViewController, UITextFieldDelegate, UIViewControllerT
     
     // MARK: - Layout
     fileprivate func layoutSubView() {
+        if owner != nil { return }
+        
         if (layoutFlg) { return }
         layoutFlg = true
-        
         alertView.backgroundColor = alertViewBackgroundColor
         circleView.backgroundColor = alertViewBackgroundColor
-        
         setIcon()
         setTextContent()
         setButtonArea()
-        
         //------------------------------
         // AlertView Layout
         //------------------------------

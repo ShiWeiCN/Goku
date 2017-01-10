@@ -30,11 +30,15 @@ class ViewController: UITableViewController {
                         .tapped(nil)
                 })
             case 1:
-                self.goku.presentAlert(true, closure: { make in
+                self.goku.presentAlert(true, closure: { (make) in
                     make.alert
                         .theme
                         .custom(UIView())
+                }, dismiss: { (alert) in
+                    print("\(type(of: alert))")
+                    alert.dismiss(animated: true, completion: nil)
                 })
+                
             default: break
             }
         }

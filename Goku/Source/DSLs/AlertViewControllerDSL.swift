@@ -33,6 +33,12 @@ public struct AlertViewControllerDSL: AlertBasicAttributesDSL {
         self.target?.present(alert, animated: animated, completion: completion)
     }
     
+    public func presentAlert(_ animated: Bool, closure: ((_ make: AlertMaker) -> Void), dismiss: ((AlertView) -> Void)) {
+        let alert = AlertMaker.presentAlert(item: self.viewController, animated: animated, closure: closure)
+        self.target?.present(alert, animated: animated, completion: nil)
+        dismiss(alert)
+    }
+    
     public var target: AnyObject? {
         return self.viewController
     }
