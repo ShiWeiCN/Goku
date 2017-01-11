@@ -228,15 +228,6 @@ public class AlertView: UIViewController, UITextFieldDelegate, UIViewControllerT
         
     }
     
-    internal convenience init(with ownerView: UIView) {
-        self.init(nibName: nil, bundle: nil)
-        settings()
-        theme = AlertTheme.theme
-        owner = ownerView
-        view.frame.size = CGSize.screenSize
-        layoutBackgroundView()
-    }
-    
     override init(nibName nibNameOrNil: String?, bundle nibBundleOrNil: Bundle?) {
         super.init(nibName:nibNameOrNil, bundle:nibBundleOrNil)
     }
@@ -505,43 +496,6 @@ public class AlertView: UIViewController, UITextFieldDelegate, UIViewControllerT
         }
         return result
     }
-    
-    /**
-     Show customize subView at aletView
-     
-     - author: Shi Wei
-     - date: 16-07-31 12:07:21
-     
-     - parameter withSubView: customize subview
-     */
-//    fileprivate func configureSubView(withSubView view: UIView) {
-//        self.layoutBackgroundView()
-//        
-//        containerView.addSubview(view)
-//        
-//        self.customizeView = view
-//        
-//        //------------------------------
-//        // Layout Constraint
-//        //------------------------------
-//        customizeView.translatesAutoresizingMaskIntoConstraints = false
-//        
-//        let customizeViewCenterXConstraint = NSLayoutConstraint(item: customizeView, attribute: .centerX, relatedBy: .equal, toItem: containerView, attribute: .centerX, multiplier: 1.0, constant: 0.0)
-//        let customizeViewCenterYConstraint = NSLayoutConstraint(item: customizeView, attribute: .centerY, relatedBy: .equal, toItem: containerView, attribute: .centerY, multiplier: 1.0, constant: 0.0)
-//        containerView.addConstraints([customizeViewCenterXConstraint, customizeViewCenterYConstraint])
-//        
-//        // Customize View
-//        let screenSize = UIScreen.main.bounds.size
-//        let customizeViewWidth: CGFloat = view.frame.width > screenSize.width ? (screenSize.width - 2 * customizeViewPadding) : view.frame.width
-//        let customizeViewHeight: CGFloat = view.frame.width > screenSize.width ? (customizeViewWidth * view.frame.height / view.frame.width) : view.frame.height
-//        
-//        let customizeViewWidthConstraint = NSLayoutConstraint(item: customizeView, attribute: .width, relatedBy: .equal, toItem: nil, attribute: .width, multiplier: 1.0, constant: customizeViewWidth)
-//        let customizeViewHeightConstraint = NSLayoutConstraint(item: customizeView, attribute: .height, relatedBy: .equal, toItem: nil, attribute: .height, multiplier: 1.0, constant: customizeViewHeight)
-//        customizeView.addConstraints([
-//            customizeViewWidthConstraint,
-//            customizeViewHeightConstraint
-//            ])
-//    }
     
     private func addSubviews() {
         // AlertView

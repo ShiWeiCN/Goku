@@ -77,7 +77,6 @@ public class AlertMaker {
     
     fileprivate static let defaultAlert: UInt = AlertAttributes.alert.toRaw() + AlertAttributes.theme.toRaw()
     fileprivate static let customAlert: UInt = AlertAttributes.alert.toRaw() + AlertAttributes.customize.toRaw()
-    fileprivate static let owner: UInt = AlertAttributes.alert.toRaw() + AlertAttributes.owner.toRaw() + AlertAttributes.theme.toRaw()
     
     fileprivate static func assembleAlertView(with description: AlertDescription) -> AlertView {
         // Style
@@ -87,8 +86,6 @@ public class AlertMaker {
             style = .actionSheet
         } else if rawValue == defaultAlert || rawValue == customAlert {
             style = .alert(category: .normal)
-        } else if rawValue == owner {
-            return AlertView(with: UIView())
         } else {
             style = self.alertStyle(by: rawValue)
         }
