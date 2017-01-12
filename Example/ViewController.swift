@@ -20,7 +20,7 @@ class ViewController: UITableViewController {
         if indexPath.section == 0 {
             switch indexPath.row {
             case 0:
-                self.goku.presentAlert(true, closure: { (make) in
+                self.goku.presentAlert(animated: true, closure: { (make) in
                     make
                         .alert
                         .theme
@@ -29,7 +29,7 @@ class ViewController: UITableViewController {
                         .tapped(nil)
                 })
             case 1:
-                self.goku.presentAlert(true, closure: { (make) in
+                self.goku.presentAlert(animated: true, closure: { (make) in
                     make.alert
                         .theme
                         .title("Awesome")
@@ -42,7 +42,7 @@ class ViewController: UITableViewController {
                     )
                 })
             case 2:
-                self.goku.presentAlert(true, closure: { (make) in
+                self.goku.presentAlert(animated: true, closure: { (make) in
                     make.alert
                         .theme
                         .title("Awesome")
@@ -60,7 +60,7 @@ class ViewController: UITableViewController {
         } else if indexPath.section == 1 {
             switch indexPath.row {
             case 0:
-                self.goku.presentAlert(true, closure: { (make) in
+                self.goku.presentAlert(animated: true, closure: { (make) in
                     make.theme
                         .actionSheet
                         .title("Okay/Cancel")
@@ -74,7 +74,7 @@ class ViewController: UITableViewController {
                     )
                 })
             case 1:
-                self.goku.presentAlert(true, closure: { (make) in
+                self.goku.presentAlert(animated: true, closure: { (make) in
                     make.theme
                         .actionSheet
                         .title("More")
@@ -92,7 +92,7 @@ class ViewController: UITableViewController {
         } else {
             switch indexPath.row {
             case 0:
-                self.goku.presentAlert(true, closure: { (make) in
+                self.goku.presentAlert(animated: true, closure: { (make) in
                     make.theme
                         .alert
                         .success
@@ -106,7 +106,7 @@ class ViewController: UITableViewController {
                     )
                 })
             case 1:
-                self.goku.presentAlert(true, closure: { (make) in
+                self.goku.presentAlert(animated: true, closure: { (make) in
                     make.theme
                         .alert
                         .failure
@@ -119,7 +119,7 @@ class ViewController: UITableViewController {
                     )
                 })
             case 2:
-                self.goku.presentAlert(true, closure: { (make) in
+                self.goku.presentAlert(animated: true, closure: { (make) in
                     make.theme
                         .alert
                         .warning
@@ -132,7 +132,7 @@ class ViewController: UITableViewController {
                     )
                 })
             case 3:
-                self.goku.presentAlert(true, closure: { (make) in
+                self.goku.presentAlert(animated: true, closure: { (make) in
                     make.theme
                         .alert
                         .notice
@@ -145,7 +145,7 @@ class ViewController: UITableViewController {
                     )
                 })
             case 4:
-                self.goku.presentAlert(true, closure: { (make) in
+                self.goku.presentAlert(animated: true, closure: { (make) in
                     make.theme
                         .alert
                         .question

@@ -31,7 +31,7 @@ import Goku
 
 // 🌟 Usage 👇
 	
-self.goku.presentAlert(true, closure: { (make) in
+self.goku.presentAlert(animated: true, closure: { (make) in
 	make.theme
 		.actionSheet
 		.title("Okay/Cancel")
@@ -45,7 +45,7 @@ self.goku.presentAlert(true, closure: { (make) in
 	)
 })	
 
-self.goku.presentAlert(true, closure: { (make) in
+self.goku.presentAlert(animated: true, closure: { (make) in
 	make.theme
 		.alert
 		.success
@@ -54,7 +54,7 @@ self.goku.presentAlert(true, closure: { (make) in
 		.cancel("Cancel")
 		.normal(["Default 1", "Default 2"])
 		.tapped({ (index) in
-			print("Index \(index)")
+			print("Tapped index is \(index)")
 		}
 	)
 })

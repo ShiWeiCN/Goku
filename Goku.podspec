@@ -1,6 +1,6 @@
 Pod::Spec.new do |s|
     s.name = 'Goku'
-    s.version = '1.0'
+    s.version = '1.1'
     s.license = 'MIT'
     s.summary = '😊 Goku is an alert view written by swift 3, support both action sheet and alert view style.'
     s.homepage = 'https://github.com/ShiWeiCN/Goku'

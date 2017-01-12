@@ -11,9 +11,13 @@ import XCTest
 
 class GokuTests: XCTestCase {
     
+    var vc = UIViewController()
+    
     override func setUp() {
         super.setUp()
-        
+        vc.goku.presentAlert(animated: true) { (make) in
+            
+        }
     }
     
     override func tearDown() {
