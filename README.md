@@ -31,7 +31,7 @@ import Goku
 
 // 🌟 Usage 👇
 	
-self.jes.presentAlert(true, closure: { (make) in
+self.goku.presentAlert(true, closure: { (make) in
 	make.theme
 		.actionSheet
 		.title("Okay/Cancel")
