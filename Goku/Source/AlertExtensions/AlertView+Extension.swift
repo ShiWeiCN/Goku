@@ -56,7 +56,7 @@ internal extension String {
             paragraphStyle.lineBreakMode = lineBreakMode!;
             attrib.updateValue(paragraphStyle, forKey: NSParagraphStyleAttributeName);
         }
-        let size = CGSize(width: width, height: CGFloat(DBL_MAX));
+        let size = CGSize(width: width, height: CGFloat(Double.greatestFiniteMagnitude));
         return ceil((self as NSString).boundingRect(with: size, options: NSStringDrawingOptions.usesLineFragmentOrigin, attributes:attrib, context: nil).height)
     }
 }
