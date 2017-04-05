@@ -36,7 +36,7 @@ internal class AlertDescription {
     internal var prompt: AlertPrompt? = nil
     internal var title: String? = nil
     internal var message: String? = nil
-    internal var cancel: String = "Cancel"
+    internal var cancel: String? = nil
     internal var destructive: String? = nil
     internal var normal: [String] = [String]()
     internal var closure: Closure? = nil

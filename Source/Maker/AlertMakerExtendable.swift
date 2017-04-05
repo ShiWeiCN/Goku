@@ -83,6 +83,12 @@ public class AlertMakerExtendable: AlertMakerAlertPromptable {
         })
     }
     
+    public func custom(_ view: UIView) {
+        self.description.attributes = AlertAttributes(nilLiteral: ())
+        self.description.attributes += .theme
+        self.makeMoreStyleAlert(.owner)
+    }
+    
     @discardableResult
     public func theme(_ theme: AlertTheme) -> AlertMakerExtendable { /// Customize theme setting
         guard self.description.attributes.contains(.customize) else {

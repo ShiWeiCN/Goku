@@ -48,12 +48,8 @@ internal struct AlertAttributes: OptionSet {
     internal static func fromMask(_ raw: UInt) -> AlertAttributes { return self.init(raw) }
     
     // normal
-    
-    
     internal static var theme: AlertAttributes { return self.init(2) } /// Default theme
-    
     internal static var customize: AlertAttributes { return self.init(4) } /// Custom theme
-    
     internal static var alert: AlertAttributes { return self.init(8) }
     internal static var actionSheet: AlertAttributes { return self.init(16) }
     
@@ -64,6 +60,9 @@ internal struct AlertAttributes: OptionSet {
     internal static var warning: AlertAttributes { return self.init(128) }
     internal static var notice: AlertAttributes { return self.init(256) }
     internal static var question: AlertAttributes { return self.init(512) }
+    
+    // Custom Alert View Content
+    internal static var owner: AlertAttributes { return self.init(1024) }
     
 }
 

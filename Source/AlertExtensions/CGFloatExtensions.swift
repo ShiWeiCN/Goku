@@ -36,5 +36,5 @@ internal extension CGFloat {
     static let innerContentWidthPadding: CGFloat = 15.0
     static let innerButtonWidth: CGFloat = 240.0
     static let actionSheetBounceHeight: CGFloat = 20.0
-    static let customizeViewPadding: CGFloat = 52.5
+    static let ownerViewPadding: CGFloat = 52.5
 }

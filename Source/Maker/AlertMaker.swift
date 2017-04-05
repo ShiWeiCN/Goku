@@ -79,7 +79,6 @@ public class AlertMaker {
     fileprivate static let customAlert: UInt = AlertAttributes.alert.toRaw() + AlertAttributes.customize.toRaw()
     
     fileprivate static func assembleAlertView(with description: AlertDescription) -> AlertView {
-        
         // Style
         var style: AlertViewStyle
         let rawValue = description.attributes.toRaw()
@@ -92,13 +91,13 @@ public class AlertMaker {
         }
         let others: [AlertItemStyle] = description.normal.map { .other($0) }
         return AlertView(with: description.theme,
-               preferredStyle: style,
-                        title: description.title,
-                      message: description.message,
-                 cancelButton: .cancel(description.cancel),
-            destructiveButton: description.destructive == nil ? nil : .destructive(description.destructive!),
-                 otherButtons: others,
-                   tapClosure: description.closure)
+                         preferredStyle: style,
+                         title: description.title,
+                         message: description.message,
+                         cancelButton: description.cancel == nil ? nil : .cancel(description.cancel!),
+                         destructiveButton: description.destructive == nil ? nil : .destructive(description.destructive!),
+                         otherButtons: others,
+                         tapClosure: description.closure)
     }
     
     fileprivate static func alertStyle(by rawValue: UInt) -> AlertViewStyle {
