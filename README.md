@@ -4,13 +4,13 @@
 
 <a href="https://github.com/Carthage/Carthage/"><img src="https://img.shields.io/badge/Carthage-compatible-4BC51D.svg?style=flat"></a>
 
-<a href="http://cocoadocs.org/docsets/JESAlertView"><img src="https://img.shields.io/badge/pod-v1.0-blue.svg"></a>
+<a href="http://cocoadocs.org/docsets/Goku"><img src="https://img.shields.io/badge/pod-v1.2.0-blue.svg"></a>
 
-<a href="https://raw.githubusercontent.com/ShiWeiCN/JESAlertView/master/LICENSE"><img src="https://img.shields.io/badge/license-MIT-000000.svg"></a>
+<a href="https://raw.githubusercontent.com/ShiWeiCN/Goku/master/LICENSE"><img src="https://img.shields.io/badge/license-MIT-000000.svg"></a>
 
-<a href="http://cocoadocs.org/docsets/JESAlertView"><img src="https://img.shields.io/badge/platform-ios 8.0+-lightgrey.svg"></a>
+<a href="http://cocoadocs.org/docsets/Goku"><img src="https://img.shields.io/badge/platform-ios 8.0+-lightgrey.svg"></a>
 
-<a href="https://github.com/ShiWeiCN/JESAlertView"><img src="https://img.shields.io/badge/Xcode 8-Swift 3-red.svg"></a>
+<a href="https://github.com/ShiWeiCN/Goku"><img src="https://img.shields.io/badge/Xcode 8-Swift 3.1-red.svg"></a>
 
 </p>
 
@@ -40,7 +40,7 @@ self.goku.presentAlert(animated: true, closure: { (make) in
 		.destructive("OK")
 		.normal(["Button1", "Button2"])
 		.tapped({ (index) in
-			print("Tapped index is \(index)")
+		    print("Tapped index is \(index)")
 		}
 	)
 })	
@@ -54,7 +54,7 @@ self.goku.presentAlert(animated: true, closure: { (make) in
 		.cancel("Cancel")
 		.normal(["Default 1", "Default 2"])
 		.tapped({ (index) in
-			print("Tapped index is \(index)")
+		    print("Tapped index is \(index)")
 		}
 	)
 })
@@ -68,7 +68,7 @@ For more usage you can see [Example](https://github.com/ShiWeiCN/Goku)
 
 **Goku** is available through [Cocoapods](https://cocoapods.org/).
 
-Add the following to you `Podfile`
+Add the following line to you `Podfile`
 
 ```
 pod 'Goku', '~> 1.0'
