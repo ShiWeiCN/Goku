@@ -31,7 +31,6 @@ internal class AlertSharedItemCell: UICollectionViewCell {
     
     required init?(coder aDecoder: NSCoder) {
         super.init(coder: aDecoder)
-        assembleSeparator()
     }
     
     private func assembleSeparator() {
@@ -43,7 +42,7 @@ internal class AlertSharedItemCell: UICollectionViewCell {
         let bottomSeparatorLeft = NSLayoutConstraint(item: self.bottomSpearatorView, attribute: .left, relatedBy: .equal, toItem: self.contentView, attribute: .left, multiplier: 1.0, constant: 0.0)
         let bottomSeparatorBottom = NSLayoutConstraint(item: self.bottomSpearatorView, attribute: .bottom, relatedBy: .equal, toItem: self.contentView, attribute: .bottom, multiplier: 1.0, constant: 0.0)
         let leftSeparatorTopConstraint = NSLayoutConstraint(item: rightVerticalSeparatorView, attribute: .top, relatedBy: .equal, toItem: self.contentView, attribute: .top, multiplier: 1.0, constant: 0.0)
-        let leftSeparatorBottomConstraint = NSLayoutConstraint(item: rightVerticalSeparatorView, attribute: .bottom, relatedBy: .equal, toItem: self.contentView, attribute: .bottom, multiplier: 1.0, constant: 0.0)
+        let leftSeparatorBottomConstraint = NSLayoutConstraint(item: rightVerticalSeparatorView, attribute: .bottom, relatedBy: .equal, toItem: contentView, attribute: .bottom, multiplier: 1.0, constant: 0.0)
         let leftSeparatorLeftConstraint = NSLayoutConstraint(item: rightVerticalSeparatorView, attribute: .left, relatedBy: .equal, toItem: self.contentView, attribute: .left, multiplier: 1.0, constant: 0.0)
         
         self.contentView.addConstraints([
@@ -58,7 +57,7 @@ internal class AlertSharedItemCell: UICollectionViewCell {
         let separatorHeight = NSLayoutConstraint(item: bottomSpearatorView, attribute: .height, relatedBy: .equal, toItem: nil, attribute: .height, multiplier: 1.0, constant: 0.5)
         bottomSpearatorView.addConstraint(separatorHeight)
         
-        let leftSeparatorWidth = NSLayoutConstraint(item: leftSeparatorBottomConstraint, attribute: .width, relatedBy: .equal, toItem: nil, attribute: .width, multiplier: 1.0, constant: 0.5)
+        let leftSeparatorWidth = NSLayoutConstraint(item: rightVerticalSeparatorView, attribute: .width, relatedBy: .equal, toItem: nil, attribute: .width, multiplier: 1.0, constant: 0.5)
         rightVerticalSeparatorView.addConstraint(leftSeparatorWidth)
     }
 }
