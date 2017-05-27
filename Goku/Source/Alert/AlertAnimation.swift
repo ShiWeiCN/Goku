@@ -45,8 +45,18 @@ internal class AlertAnimation: NSObject, UIViewControllerAnimatedTransitioning {
     
     private func presentAnimateTransition(_ transitionContext: UIViewControllerContextTransitioning) {
         let alertController = transitionContext.viewController(forKey: UITransitionContextViewControllerKey.to) as! AlertView
+        // Goku's theme
+        let theme = alertController.theme
+        
+        var blurEffect: UIVisualEffect = UIVisualEffect()
+        
         let containerView = transitionContext.containerView
-        alertController.overlayView.alpha = 0.0
+        if theme?.isBlurEffectView() is Bool {
+            alertController.overlayView.alpha = 0.0
+        } else {
+            blurEffect = alertController.blurEffectView?.effect ?? UIVisualEffect()
+            alertController.blurEffectView?.effect = nil
+        }
         if (alertController.isAlert()) {
             alertController.alertView.alpha = 0.0
             alertController.alertView.center = alertController.view.center
@@ -55,8 +65,12 @@ internal class AlertAnimation: NSObject, UIViewControllerAnimatedTransitioning {
             alertController.alertView.transform = CGAffineTransform(translationX: 0, y: alertController.alertView.frame.height)
         }
         containerView.addSubview(alertController.view)
-        UIView.animate(withDuration: 0.25, animations: {
-            alertController.overlayView.alpha = 1.0
+        UIView.animate(withDuration: 0.375, animations: {
+            if theme?.isBlurEffectView() is Bool {
+                alertController.overlayView.alpha = 1.0
+            } else {
+                alertController.blurEffectView?.effect = blurEffect
+            }
             if (alertController.isAlert()) {
                 alertController.alertView.alpha = 1.0
                 alertController.alertView.transform = CGAffineTransform(scaleX: 1.05, y: 1.05)
@@ -67,18 +81,23 @@ internal class AlertAnimation: NSObject, UIViewControllerAnimatedTransitioning {
         }, completion: { finished in
             UIView.animate(withDuration: 0.2, animations: {
                 alertController.alertView.transform = CGAffineTransform.identity
-                }, completion: { finished in
-                    if (finished) {
-                        transitionContext.completeTransition(true)
-                    }
+            }, completion: { finished in
+                if (finished) {
+                    transitionContext.completeTransition(true)
+                }
             })
         }) 
     }
     
     private func dismissAnimateTransition(_ transitionContext: UIViewControllerContextTransitioning) {
         let alertController = transitionContext.viewController(forKey: UITransitionContextViewControllerKey.from) as! AlertView
+        let theme = alertController.theme
         UIView.animate(withDuration: self.transitionDuration(using: transitionContext), animations: {
-            alertController.overlayView.alpha = 0.0
+            if theme?.isBlurEffectView() is Bool {
+                alertController.overlayView.alpha = 0.0
+            } else {
+                alertController.blurEffectView?.effect = nil
+            }
             if (alertController.isAlert()) {
                 alertController.alertView.alpha = 0.0
                 alertController.alertView.transform = CGAffineTransform(scaleX: 0.9, y: 0.9)

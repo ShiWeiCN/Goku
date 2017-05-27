@@ -25,6 +25,6 @@
 import UIKit
 
 internal enum AlertViewStyle {
-    case actionSheet
+    case actionSheet(isShareable: Bool)
     case alert(category: AlertStyle)
 }

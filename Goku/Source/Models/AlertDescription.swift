@@ -41,6 +41,7 @@ internal class AlertDescription {
     internal var normal: [String] = [String]()
     internal var closure: Closure? = nil
     internal var theme: AlertTheme = AlertTheme.theme
+    internal var shares: [AlertSharedItem] = [AlertSharedItem]()
     
     // MARK: Initialization
     

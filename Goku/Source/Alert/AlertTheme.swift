@@ -44,6 +44,13 @@ public enum AlertShape {
     }
 }
 
+public enum AlertOverlay {
+    
+    case normal(UIColor)
+    case blurEffect(UIBlurEffectStyle)
+    
+}
+
 public class AlertTheme {
     
     //
@@ -52,7 +59,7 @@ public class AlertTheme {
     
     // MARK: Private
     
-    fileprivate(set) var overlayColor: Color
+    fileprivate(set) var overlay: AlertOverlay
     fileprivate(set) var backgroundColor: Color
     
     fileprivate(set) var titleFont: Font
@@ -76,41 +83,41 @@ public class AlertTheme {
     
     public class var theme: AlertTheme {
         get {
-            return AlertTheme(overlayColor: Color.overlayColor,
-                           backgroundColor: Color.backgroundColor,
-                                 titleFont: Font.boldSystemFont(ofSize: 18),
-                                titleColor: Color.textColor,
-                               messageFont: Font.systemFont(ofSize: 16),
+            return AlertTheme(overlay: .blurEffect(UIBlurEffectStyle.dark),
+                              backgroundColor: Color.backgroundColor,
+                              titleFont: Font.boldSystemFont(ofSize: 18),
+                              titleColor: Color.textColor,
+                              messageFont: Font.systemFont(ofSize: 16),
                               messageColor: Color.textColor,
-                           buttonTitleFont: Font.boldSystemFont(ofSize: 16),
-                          buttonTitleColor: Color.black.withAlphaComponent(0.85),
-                     buttonBackgroundColor: Color.otherColor,
-               cancelButtonBackgroundColor: Color.cancelColor,
-                    cancelButtonTitleColor: Color.black,
-                   destructBackgroundColor: Color.destructiveColor,
-                        destructTitleColor: Color.white,
-                                     shape: AlertShape.rounded(2.0))
+                              buttonTitleFont: Font.boldSystemFont(ofSize: 16),
+                              buttonTitleColor: Color.black.withAlphaComponent(0.85),
+                              buttonBackgroundColor: Color.otherColor,
+                              cancelButtonBackgroundColor: Color.cancelColor,
+                              cancelButtonTitleColor: Color.black,
+                              destructBackgroundColor: Color.destructiveColor,
+                              destructTitleColor: Color.white,
+                              shape: AlertShape.rounded(2.0))
         }
     }
     
     // MARK: Initialization
     
-    internal init(overlayColor: Color,
-               backgroundColor: UIColor,
-                     titleFont: Font,
-                    titleColor: Color,
-                   messageFont: Font,
+    internal init(overlay: AlertOverlay,
+                  backgroundColor: UIColor,
+                  titleFont: Font,
+                  titleColor: Color,
+                  messageFont: Font,
                   messageColor: Color,
-               buttonTitleFont: Font,
-              buttonTitleColor: Color,
-         buttonBackgroundColor: Color,
-   cancelButtonBackgroundColor: Color,
-        cancelButtonTitleColor: Color,
-       destructBackgroundColor: Color,
-            destructTitleColor: Color,
-                         shape: AlertShape) {
+                  buttonTitleFont: Font,
+                  buttonTitleColor: Color,
+                  buttonBackgroundColor: Color,
+                  cancelButtonBackgroundColor: Color,
+                  cancelButtonTitleColor: Color,
+                  destructBackgroundColor: Color,
+                  destructTitleColor: Color,
+                  shape: AlertShape) {
         
-        self.overlayColor = overlayColor
+        self.overlay = overlay
         self.backgroundColor = backgroundColor
         self.titleFont = titleFont
         self.titleColor = titleColor
@@ -124,11 +131,10 @@ public class AlertTheme {
         self.destructBackgroundColor = destructBackgroundColor
         self.destructTitleColor = destructTitleColor
         self.shape = shape
-        
     }
     
-    public func overlayColor(_ overlay: UIColor) -> AlertTheme {
-        self.overlayColor = overlay
+    public func overlay(_ overlay: AlertOverlay) -> AlertTheme {
+        self.overlay = overlay
         return self
     }
     
@@ -195,6 +201,14 @@ public class AlertTheme {
     public func shape(_ shape: AlertShape) -> AlertTheme {
         self.shape = shape
         return self
+    }
+    
+    internal func isBlurEffectView() -> Any {
+        if case AlertOverlay.blurEffect(let style) = self.overlay {
+            return style
+        } else {
+            return false
+        }
     }
     
 }

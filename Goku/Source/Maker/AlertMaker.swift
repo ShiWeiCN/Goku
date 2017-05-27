@@ -78,15 +78,24 @@ public class AlertMaker {
     fileprivate static let defaultAlert: UInt = AlertAttributes.alert.toRaw() + AlertAttributes.theme.toRaw()
     fileprivate static let customAlert: UInt = AlertAttributes.alert.toRaw() + AlertAttributes.customize.toRaw()
     
+    fileprivate static let sharedAlert: UInt = AlertAttributes.share.toRaw()
+    
     fileprivate static func assembleAlertView(with description: AlertDescription) -> AlertView {
         // Style
         var style: AlertViewStyle
         let rawValue = description.attributes.toRaw()
         if rawValue == defaultActionSheet || rawValue == customActionSheet {
-            style = .actionSheet
+            style = .actionSheet(isShareable: false)
         } else if rawValue == defaultAlert || rawValue == customAlert {
             style = .alert(category: .normal)
-        } else {
+        } else if rawValue > sharedAlert {
+            style = .actionSheet(isShareable: true)
+            return AlertView(with: description.theme,
+                             preferredStyle: .actionSheet(isShareable: true),
+                             shares: description.shares,
+                             cancelButton: description.cancel == nil ? nil : .cancel(description.cancel!),
+                             tappedClosure: description.closure)
+        } else { // Call the shared style initialized
             style = self.alertStyle(by: rawValue)
         }
         let others: [AlertItemStyle] = description.normal.map { .other($0) }

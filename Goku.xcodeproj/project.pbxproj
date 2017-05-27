@@ -35,6 +35,7 @@
 		89109CD41E24DD76002973E8 /* AlertItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 89109CBB1E24DD76002973E8 /* AlertItem.swift */; };
 		89109CD51E24DD76002973E8 /* AlertPrompt.swift in Sources */ = {isa = PBXBuildFile; fileRef = 89109CBC1E24DD76002973E8 /* AlertPrompt.swift */; };
 		89109CD61E24DD76002973E8 /* PresentController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 89109CBD1E24DD76002973E8 /* PresentController.swift */; };
+		89B9C6D91ED975BC00662373 /* AlertSharedItemCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 89B9C6D81ED975BC00662373 /* AlertSharedItemCell.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -79,6 +80,7 @@
 		89109CBB1E24DD76002973E8 /* AlertItem.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AlertItem.swift; sourceTree = "<group>"; };
 		89109CBC1E24DD76002973E8 /* AlertPrompt.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AlertPrompt.swift; sourceTree = "<group>"; };
 		89109CBD1E24DD76002973E8 /* PresentController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PresentController.swift; sourceTree = "<group>"; };
+		89B9C6D81ED975BC00662373 /* AlertSharedItemCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AlertSharedItemCell.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -160,6 +162,7 @@
 				89109CA61E24DD76002973E8 /* AlertView.swift */,
 				89109CA71E24DD76002973E8 /* AlertViewStyle.swift */,
 				89109CA81E24DD76002973E8 /* AlertViewStyleKit.swift */,
+				89B9C6D81ED975BC00662373 /* AlertSharedItemCell.swift */,
 			);
 			path = Alert;
 			sourceTree = "<group>";
@@ -337,6 +340,7 @@
 				89109CC11E24DD76002973E8 /* AlertTarget.swift in Sources */,
 				89109CCA1E24DD76002973E8 /* IntExtensions.swift in Sources */,
 				89109CD61E24DD76002973E8 /* PresentController.swift in Sources */,
+				89B9C6D91ED975BC00662373 /* AlertSharedItemCell.swift in Sources */,
 				89109CC41E24DD76002973E8 /* AlertViewStyle.swift in Sources */,
 				89109CC51E24DD76002973E8 /* AlertViewStyleKit.swift in Sources */,
 				89109CC81E24DD76002973E8 /* CGFloatExtensions.swift in Sources */,

@@ -26,6 +26,16 @@
     import UIKit
 #endif
 
+public struct AlertSharedItem {
+    let platform: String
+    let platformImage: String
+    
+    public init(platform: String, platformImage: String) {
+        self.platform = platform
+        self.platformImage = platformImage
+    }
+}
+
 public class AlertMakerAlertPromptable: AlertMakerEditable  {
     
     internal func prompt(of prompt: AlertPrompt, content: String?, file: String, line: UInt) -> AlertMakerAlertPromptable {

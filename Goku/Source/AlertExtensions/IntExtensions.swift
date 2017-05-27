@@ -26,4 +26,5 @@ import Foundation
 
 internal extension Int {
     static let baseTag: Int = 946073
+    static let sharedItemOnOneColumn: Int = 3
 }

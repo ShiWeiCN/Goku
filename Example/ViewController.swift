@@ -162,8 +162,26 @@ class ViewController: UITableViewController {
                     }
                 )
             })
+        case (3, 0):
+            let shares = [
+                AlertSharedItem(platform: "微信", platformImage: ""),
+                AlertSharedItem(platform: "微信", platformImage: ""),
+                AlertSharedItem(platform: "微信", platformImage: "")
+            ]
+            self.goku.presentAlert(animated: true, closure: { (make) in
+                make.actionSheet
+                    .theme
+                    .cancel("取消")
+                    .shares(shares)
+                    .tapped({ (index) in
+                        
+                    }
+                )
+            })
         default: break
         }
+        
+        
     }
 
 }

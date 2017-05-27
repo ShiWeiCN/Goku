@@ -35,33 +35,49 @@ private struct Handler {
 private extension Selector {
     static let alertActionButtonTapped = #selector(AlertView.buttonTapped(_:))
     static let handleContainerViewTapGesture = #selector(AlertView.handleContainerViewTapGesture(_:))
+    static let sharedCancelButtonTapped = #selector(AlertView.sharedCancelButtonTapped(_:))
 }
 
-public class AlertView: UIViewController, UITextFieldDelegate, UIViewControllerTransitioningDelegate {
+final class AlertView: UIViewController, UITextFieldDelegate, UIViewControllerTransitioningDelegate {
     
-    // Message
+    // MARK: - Message
     fileprivate var message: String?
     
-    fileprivate var theme: AlertTheme!
+    fileprivate(set) var theme: AlertTheme!
     
     fileprivate var tappedButtonClosure: AlertTapColsure?
     
-    // AlertController Style
-    fileprivate(set) var preferredStyle: AlertViewStyle = .actionSheet
+    // MARK: - AlertController Style
+    fileprivate(set) var preferredStyle: AlertViewStyle = .actionSheet(isShareable: false)
     
-    // OverlayView
+    // MARK: - BlurEffectView
+    lazy fileprivate(set) var blurEffectView: UIVisualEffectView? = {
+        if case AlertOverlay.blurEffect(let style) = self.theme.overlay {
+            let blurEffect = UIBlurEffect(style: style)
+            let blurEffectView = UIVisualEffectView(effect: blurEffect)
+            blurEffectView.frame = self.view.bounds
+            blurEffectView.autoresizingMask = [.flexibleWidth, .flexibleHeight]
+            return blurEffectView
+        }
+        return nil
+    }()
+    
+    // MARK: - OverlayView
     fileprivate(set) var overlayView = UIView()
-    fileprivate var overlayColor: UIColor {
+    fileprivate var overlayColor: UIColor? {
         get {
-            return self.theme.overlayColor
+            if case AlertOverlay.normal(let color) = self.theme.overlay {
+                return color
+            }
+            return nil
         }
     }
     
-    // ContainerView
+    // MARK: - ContainerView
     fileprivate(set) var containerView = UIView()
     fileprivate var containerViewBottomSpaceConstraint: NSLayoutConstraint!
     
-    // AlertView
+    // MARK: - AlertView
     fileprivate(set) var alertView = UIView()
     fileprivate var alertViewWidth: CGFloat = .alertViewWidth
     fileprivate var alertViewPadding: CGFloat = .alertViewPadding
@@ -74,15 +90,18 @@ public class AlertView: UIViewController, UITextFieldDelegate, UIViewControllerT
     
     fileprivate var alertViewBackgroundColor: UIColor {
         get {
+            if self.isShared { return .white }
             return self.theme.backgroundColor
         }
     }
     
-    // Customize View
+    private var isShared: Bool = false
+    
+    // MARK: - Customize View
     var owner: UIView!
     fileprivate var ownerViewPadding: CGFloat = .ownerViewPadding
     
-    // IconImageView
+    // MARK: - IconImageView
     fileprivate var diffIcon: Bool = false
     fileprivate var iconImageView: UIImageView = UIImageView()
     fileprivate var iconBackgroundView: UIView = UIView()
@@ -103,18 +122,18 @@ public class AlertView: UIViewController, UITextFieldDelegate, UIViewControllerT
         }
     }
     
-    // TextAreaScrollView
+    // MARK: - TextAreaScrollView
     fileprivate var textAreaScrollView = UIScrollView()
     fileprivate var textAreaHeight: CGFloat = 0.0
     
-    // TextAreaView
+    // MARK: - TextAreaView
     fileprivate var textAreaView: UIView = UIView()
     
-    // TextContainer
+    // MARK: - TextContainer
     fileprivate var textContainer = UIView()
     fileprivate var textContainerHeightConstraint: NSLayoutConstraint!
     
-    // TitleLabel
+    // MARK: - TitleLabel
     fileprivate var titleLabel = UILabel()
     fileprivate var titleFont: UIFont {
         get {
@@ -127,7 +146,7 @@ public class AlertView: UIViewController, UITextFieldDelegate, UIViewControllerT
         }
     }
     
-    // MessageView
+    // MARK: - MessageView
     fileprivate var messageView = UILabel()
     fileprivate var messageFont: UIFont {
         get {
@@ -140,15 +159,15 @@ public class AlertView: UIViewController, UITextFieldDelegate, UIViewControllerT
         }
     }
     
-    // ButtonAreaScrollView
+    // MARK: - ButtonAreaScrollView
     fileprivate var buttonAreaScrollView = UIScrollView()
     fileprivate var buttonAreaScrollViewHeightConstraint: NSLayoutConstraint!
     fileprivate var buttonAreaHeight: CGFloat = 0.0
     
-    // ButtonAreaView
+    // MARK: - ButtonAreaView
     fileprivate var buttonAreaView = UIView()
     
-    // ButtonContainer
+    // MARK: - ButtonContainer
     fileprivate var buttonContainer = UIView()
     fileprivate var buttonContainerHeightConstraint: NSLayoutConstraint!
     fileprivate var buttonHeight: CGFloat {
@@ -158,7 +177,38 @@ public class AlertView: UIViewController, UITextFieldDelegate, UIViewControllerT
     }
     fileprivate var buttonMargin: CGFloat = 8.0
     
-    // Buttons
+    // MARK: - Shared
+    // Shared Only one cancel button
+    fileprivate var buttonStyle: AlertItemStyle?
+    
+    // Shared
+    lazy fileprivate var sharedButton: UIButton = {
+        let button = UIButton(type: .custom)
+        button.backgroundColor = .white
+        button.setTitleColor(self.theme.buttonTitleColor, for: .normal)
+        guard let buttonStyle = self.buttonStyle else { return button }
+        if case AlertItemStyle.cancel(let cancel) = buttonStyle {
+            button.setTitle(cancel, for: .normal)
+        }
+        button.titleLabel?.font = self.theme.buttonTitleFont
+        button.addTarget(self, action: .sharedCancelButtonTapped, for: .touchUpInside)
+        return button
+    }()
+    
+    // Shared collection view
+    lazy fileprivate var collectionView: UICollectionView = {
+        let layout = UICollectionViewLayout()
+        let collectionView = UICollectionView(frame: .zero, collectionViewLayout: layout)
+        collectionView.delegate = self
+        collectionView.dataSource = self
+        collectionView.backgroundColor = .white
+        collectionView.register(AlertSharedItemCell.self, forCellWithReuseIdentifier: String(describing: AlertSharedItemCell.self))
+        return collectionView
+    }()
+    
+    fileprivate var sharedItems: [AlertSharedItem] = []
+    
+    // MARK: - Normal Buttons
     fileprivate var buttons = [UIButton]()
     fileprivate var buttonStyles = [AlertItemStyle]()
     
@@ -201,7 +251,6 @@ public class AlertView: UIViewController, UITextFieldDelegate, UIViewControllerT
         
         self.init(nibName: nil, bundle: nil)
         
-        settings()
         self.title = title
         self.message = message
         self.preferredStyle = preferredStyle
@@ -227,7 +276,24 @@ public class AlertView: UIViewController, UITextFieldDelegate, UIViewControllerT
             buttonStyles.append(cancel)
         }
         buttons = addButtons(with: buttonStyles)
+    }
+    
+    internal convenience init(with theme: AlertTheme,
+                              preferredStyle: AlertViewStyle,
+                              shares: [AlertSharedItem],
+                              cancelButton: AlertItemStyle?,
+                              tappedClosure: AlertTapColsure?) {
         
+        self.init(nibName: nil, bundle: nil)
+        self.isShared = true
+        self.preferredStyle = preferredStyle
+        self.theme = theme
+        self.tappedButtonClosure = tappedClosure
+        self.buttonStyle = cancelButton
+        self.sharedItems = shares
+        
+        sizeConfigure()
+        configureSubView()
     }
     
     override init(nibName nibNameOrNil: String?,
@@ -235,6 +301,7 @@ public class AlertView: UIViewController, UITextFieldDelegate, UIViewControllerT
         
         super.init(nibName:nibNameOrNil,
                    bundle:nibBundleOrNil)
+        settings()
     }
     
     required public init?(coder aDecoder: NSCoder) {
@@ -341,16 +408,23 @@ public class AlertView: UIViewController, UITextFieldDelegate, UIViewControllerT
         layoutFlg = true
         alertView.backgroundColor = alertViewBackgroundColor
         circleView.backgroundColor = alertViewBackgroundColor
-        setIcon()
-        setTextContent()
-        setButtonArea()
-        //------------------------------
-        // AlertView Layout
-        //------------------------------
-        // AlertView Height
-        reloadAlertViewHeight()
-        alertView.frame.size = CGSize(width: alertViewWidth,
-                                      height: alertViewHeightConstraint.constant + textAreaHeightPadding)
+        if !isShared {
+            setIcon()
+            setTextContent()
+            setButtonArea()
+            //------------------------------
+            // AlertView Layout
+            //------------------------------
+            // AlertView Height
+            reloadAlertViewHeight()
+            alertView.frame.size = CGSize(width: alertViewWidth,
+                                          height: alertViewHeightConstraint.constant + textAreaHeightPadding)
+        } else {
+            let itemsCount = (self.sharedItems.count - 1) / .sharedItemOnOneColumn + 1
+            alertViewHeightConstraint.constant = 44 + actionSheetBounceHeight + CGFloat(itemsCount * 64)
+            alertView.frame.size = CGSize(width: alertViewWidth,
+                                          height: alertViewHeightConstraint.constant + actionSheetBounceHeight)
+        }
     }
     
     fileprivate func configure(item button: UIButton) {
@@ -545,22 +619,27 @@ public class AlertView: UIViewController, UITextFieldDelegate, UIViewControllerT
         // AlertView
         containerView.addSubview(alertView)
         
-        // Icon Image
-        if self.diffIcon {
-            alertView.addSubview(circleView)
+        if isShared {
+            alertView.addSubview(sharedButton)
+            alertView.addSubview(collectionView)
+        } else {
+            // Icon Image
+            if self.diffIcon {
+                alertView.addSubview(circleView)
+            }
+            // TextAreaScrollView
+            alertView.addSubview(textAreaScrollView)
+            // TextAreaView
+            textAreaScrollView.addSubview(textAreaView)
+            // TextContainer
+            textAreaView.addSubview(textContainer)
+            // ButtonAreaScrollView
+            alertView.addSubview(buttonAreaScrollView)
+            // ButtonAreaView
+            buttonAreaScrollView.addSubview(buttonAreaView)
+            // ButtonContainer
+            buttonAreaView.addSubview(buttonContainer)
         }
-        // TextAreaScrollView
-        alertView.addSubview(textAreaScrollView)
-        // TextAreaView
-        textAreaScrollView.addSubview(textAreaView)
-        // TextContainer
-        textAreaView.addSubview(textContainer)
-        // ButtonAreaScrollView
-        alertView.addSubview(buttonAreaScrollView)
-        // ButtonAreaView
-        buttonAreaScrollView.addSubview(buttonAreaView)
-        // ButtonContainer
-        buttonAreaView.addSubview(buttonContainer)
     }
     
     private func translaterAutoresizingMaskIntoConstraints() {
@@ -575,6 +654,8 @@ public class AlertView: UIViewController, UITextFieldDelegate, UIViewControllerT
         buttonAreaScrollView.translatesAutoresizingMaskIntoConstraints = false
         buttonAreaView.translatesAutoresizingMaskIntoConstraints       = false
         buttonContainer.translatesAutoresizingMaskIntoConstraints      = false
+        sharedButton.translatesAutoresizingMaskIntoConstraints         = false
+        collectionView.translatesAutoresizingMaskIntoConstraints       = false
     }
     
     private func alertConstraint() {
@@ -694,8 +775,8 @@ public class AlertView: UIViewController, UITextFieldDelegate, UIViewControllerT
         alertView.addConstraint(alertViewHeightConstraint)
     }
     
+    // MARK: - AlertView Constraint
     private func alertViewConstraint() {
-        // MARK: - AlertView Constraint
         let textAreaScrollViewTopSpaceConstraint = NSLayoutConstraint(item: textAreaScrollView,
                                                                       attribute: .top,
                                                                       relatedBy: .equal,
@@ -756,8 +837,32 @@ public class AlertView: UIViewController, UITextFieldDelegate, UIViewControllerT
             buttonAreaScrollViewBottomSpaceConstraint])
     }
     
+    private func sharedConstraint() {
+        let cancelButtonRightSpaceConstraint = NSLayoutConstraint(item: sharedButton, attribute: .right, relatedBy: .equal, toItem: alertView, attribute: .right, multiplier: 1.0, constant: 0.0)
+        let cancelButtonLeftSpaceConstraint = NSLayoutConstraint(item: sharedButton, attribute: .left, relatedBy: .equal, toItem: alertView, attribute: .left, multiplier: 1.0, constant: 0.0)
+        let cancelButtonBottomSpaceConstraint = NSLayoutConstraint(item: sharedButton, attribute: .bottom, relatedBy: .equal, toItem: alertView, attribute: .bottom, multiplier: 1.0, constant: -actionSheetBounceHeight)
+        
+        let collectionViewTopSpaceConstraint = NSLayoutConstraint(item: collectionView, attribute: .top, relatedBy: .equal, toItem: alertView, attribute: .top, multiplier: 1.0, constant: 0.0)
+        let collectionViewLeftSpaceConstraint = NSLayoutConstraint(item: collectionView, attribute: .left, relatedBy: .equal, toItem: alertView, attribute: .left, multiplier: 1.0, constant: 0.0)
+        let collectionViewRightSpaceConstraint = NSLayoutConstraint(item: collectionView, attribute: .right, relatedBy: .equal, toItem: alertView, attribute: .right, multiplier: 1.0, constant: 0.0)
+        let collectionViewBottomToCancelConstraint = NSLayoutConstraint(item: collectionView, attribute: .bottom, relatedBy: .equal, toItem: sharedButton, attribute: .top, multiplier: 1.0, constant: 0.0)
+        
+        alertView.addConstraints([
+                cancelButtonRightSpaceConstraint,
+                cancelButtonLeftSpaceConstraint,
+                cancelButtonBottomSpaceConstraint,
+                collectionViewTopSpaceConstraint,
+                collectionViewLeftSpaceConstraint,
+                collectionViewRightSpaceConstraint,
+                collectionViewBottomToCancelConstraint
+            ])
+        
+        let sharedHeightConstraint = NSLayoutConstraint(item: sharedButton, attribute: .height, relatedBy: .equal, toItem: nil, attribute: .height, multiplier: 1.0, constant: 44)
+        sharedButton.addConstraint(sharedHeightConstraint)
+    }
+    
+    // MARK: - TextAreaScrollView Constraint
     private func textAreaConstraint() {
-        // MARK: - TextAreaScrollView Constraint
         let textAreaViewTopSpaceConstraint = NSLayoutConstraint(item: textAreaView,
                                                                 attribute: .top,
                                                                 relatedBy: .equal,
@@ -792,7 +897,7 @@ public class AlertView: UIViewController, UITextFieldDelegate, UIViewControllerT
             textAreaViewLeftSpaceConstraint,
             textAreaViewBottomSpaceConstraint])
         
-        // MARK: - TextArea Constraint
+        // TextArea Constraint
         let textAreaViewHeightConstraint = NSLayoutConstraint(item: textAreaView,
                                                               attribute: .height,
                                                               relatedBy: .equal,
@@ -816,7 +921,7 @@ public class AlertView: UIViewController, UITextFieldDelegate, UIViewControllerT
                                                                   constant: 0.0)
         textAreaView.addConstraints([textAreaViewHeightConstraint, textContainerTopSpaceConstraint, textContainerLeftSpaceConstraint])
         
-        // MARK: - TextContainer Constraint
+        // TextContainer Constraint
         let textContainerWidthConstraint = NSLayoutConstraint(item: textContainer,
                                                               attribute: .width,
                                                               relatedBy: .equal,
@@ -834,8 +939,8 @@ public class AlertView: UIViewController, UITextFieldDelegate, UIViewControllerT
         textContainer.addConstraints([textContainerWidthConstraint, textContainerHeightConstraint])
     }
     
+    // MARK: - ButtonAreaScrollView Constraint
     private func buttonAreaConstraint() {
-        // MARK: - ButtonAreaScrollView Constraint
         buttonAreaScrollViewHeightConstraint = NSLayoutConstraint(item: buttonAreaScrollView, attribute: .height, relatedBy: .equal, toItem: nil, attribute: .height, multiplier: 1.0, constant: 0.0)
         let buttonAreaViewTopSpaceConstraint = NSLayoutConstraint(item: buttonAreaView, attribute: .top, relatedBy: .equal, toItem: buttonAreaScrollView, attribute: .top, multiplier: 1.0, constant: 0.0)
         let buttonAreaViewLeftSpaceConstraint = NSLayoutConstraint(item: buttonAreaView, attribute: .left, relatedBy: .equal, toItem: buttonAreaScrollView, attribute: .left, multiplier: 1.0, constant: 0.0)
@@ -843,12 +948,12 @@ public class AlertView: UIViewController, UITextFieldDelegate, UIViewControllerT
         let buttonAreaViewHeightConstraint = NSLayoutConstraint(item: buttonAreaView, attribute: .height, relatedBy: .equal, toItem: buttonAreaScrollView, attribute: .height, multiplier: 1.0, constant: 0.0)
         buttonAreaScrollView.addConstraints([buttonAreaScrollViewHeightConstraint, buttonAreaViewTopSpaceConstraint, buttonAreaViewLeftSpaceConstraint, buttonAreaViewWidthConstraint, buttonAreaViewHeightConstraint])
         
-        // MARK: - ButtonArea Constraint
+        // ButtonArea Constraint
         let buttonContainerTopSpaceConstraint = NSLayoutConstraint(item: buttonContainer, attribute: .top, relatedBy: .equal, toItem: buttonAreaView, attribute: .top, multiplier: 1.0, constant: 0.0)
         let buttonContainerCenterXConstraint = NSLayoutConstraint(item: buttonContainer, attribute: .centerX, relatedBy: .equal, toItem: buttonAreaView, attribute: .centerX, multiplier: 1.0, constant: 0.0)
         buttonAreaView.addConstraints([buttonContainerTopSpaceConstraint, buttonContainerCenterXConstraint])
         
-        // MARK: - ButtonContainer Constraint
+        // ButtonContainer Constraint
         let buttonContainerWidthConstraint = NSLayoutConstraint(item: buttonContainer, attribute: .width, relatedBy: .equal, toItem: nil, attribute: .width, multiplier: 1.0, constant: self.isAlert() ? innerButtonWidth : innerContentWidth)
         buttonContainerHeightConstraint = NSLayoutConstraint(item: buttonContainer, attribute: .height, relatedBy: .equal, toItem: nil, attribute: .height, multiplier: 1.0, constant: buttonHeight)
         buttonContainer.addConstraints([buttonContainerWidthConstraint, buttonContainerHeightConstraint])
@@ -860,57 +965,76 @@ public class AlertView: UIViewController, UITextFieldDelegate, UIViewControllerT
      - author: Shi Wei
      - date: 16-07-31 12:07:51
      */
+    // MARK: - ContainerView && AlertView Constraint
     fileprivate func configureSubView() {
         layoutBackgroundView()
         addSubviews()
         translaterAutoresizingMaskIntoConstraints()
-        // MARK: - ContainerView && AlertView Constraint
+        
         if (isAlert()) {
             alertConstraint()
         } else {
             actionSheetConstrtaint()
         }
-        alertViewConstraint()
-        textAreaConstraint()
-        buttonAreaConstraint()
+        if !isShared {
+            alertViewConstraint()
+            textAreaConstraint()
+            buttonAreaConstraint()
+        } else {
+            sharedConstraint()
+        }
     }
     
     fileprivate func layoutBackgroundView() {
         
-        // OverlayView
-        self.view.addSubview(overlayView)
+        var constraints: [NSLayoutConstraint] = []
+        
+        if case AlertOverlay.normal(_) = self.theme.overlay {
+            self.view.addSubview(overlayView)
+            overlayView.translatesAutoresizingMaskIntoConstraints = false
+            //------------------------------
+            // Layout & Color Settings
+            //------------------------------
+            overlayView.backgroundColor = overlayColor
+            
+            let overlayViewTopSpaceConstraint = NSLayoutConstraint(item: overlayView, attribute: .top, relatedBy: .equal, toItem: self.view, attribute: .top, multiplier: 1.0, constant: 0.0)
+            let overlayViewRightSpaceConstraint = NSLayoutConstraint(item: overlayView, attribute: .right, relatedBy: .equal, toItem: self.view, attribute: .right, multiplier: 1.0, constant: 0.0)
+            let overlayViewLeftSpaceConstraint = NSLayoutConstraint(item: overlayView, attribute: .left, relatedBy: .equal, toItem: self.view, attribute: .left, multiplier: 1.0, constant: 0.0)
+            let overlayViewBottomSpaceConstraint = NSLayoutConstraint(item: overlayView, attribute: .bottom, relatedBy: .equal, toItem: self.view, attribute: .bottom, multiplier: 1.0, constant: 0.0)
+            constraints = [
+                overlayViewTopSpaceConstraint,
+                overlayViewRightSpaceConstraint,
+                overlayViewLeftSpaceConstraint,
+                overlayViewBottomSpaceConstraint
+            ]
+        } else {
+            if let blurEffectView = blurEffectView {
+                self.view.addSubview(blurEffectView)
+            }
+        }
+        
         // ContainerView
         self.view.addSubview(containerView)
         
         //------------------------------
         // Layout Constraint
         //------------------------------
-        overlayView.translatesAutoresizingMaskIntoConstraints   = false
+        
         containerView.translatesAutoresizingMaskIntoConstraints = false
         
-        //------------------------------
-        // Layout & Color Settings
-        //------------------------------
-        overlayView.backgroundColor = overlayColor
-        
         // self.view
-        let overlayViewTopSpaceConstraint = NSLayoutConstraint(item: overlayView, attribute: .top, relatedBy: .equal, toItem: self.view, attribute: .top, multiplier: 1.0, constant: 0.0)
-        let overlayViewRightSpaceConstraint = NSLayoutConstraint(item: overlayView, attribute: .right, relatedBy: .equal, toItem: self.view, attribute: .right, multiplier: 1.0, constant: 0.0)
-        let overlayViewLeftSpaceConstraint = NSLayoutConstraint(item: overlayView, attribute: .left, relatedBy: .equal, toItem: self.view, attribute: .left, multiplier: 1.0, constant: 0.0)
-        let overlayViewBottomSpaceConstraint = NSLayoutConstraint(item: overlayView, attribute: .bottom, relatedBy: .equal, toItem: self.view, attribute: .bottom, multiplier: 1.0, constant: 0.0)
+        
         let containerViewTopSpaceConstraint = NSLayoutConstraint(item: containerView, attribute: .top, relatedBy: .equal, toItem: self.view, attribute: .top, multiplier: 1.0, constant: 0.0)
         let containerViewRightSpaceConstraint = NSLayoutConstraint(item: containerView, attribute: .right, relatedBy: .equal, toItem: self.view, attribute: .right, multiplier: 1.0, constant: 0.0)
         let containerViewLeftSpaceConstraint = NSLayoutConstraint(item: containerView, attribute: .left, relatedBy: .equal, toItem: self.view, attribute: .left, multiplier: 1.0, constant: 0.0)
         containerViewBottomSpaceConstraint = NSLayoutConstraint(item: containerView, attribute: .bottom, relatedBy: .equal, toItem: self.view, attribute: .bottom, multiplier: 1.0, constant: 0.0)
-        self.view.addConstraints([
-            overlayViewTopSpaceConstraint,
-            overlayViewRightSpaceConstraint,
-            overlayViewLeftSpaceConstraint,
-            overlayViewBottomSpaceConstraint,
-            containerViewTopSpaceConstraint,
-            containerViewRightSpaceConstraint,
-            containerViewLeftSpaceConstraint,
-            containerViewBottomSpaceConstraint])
+        constraints.append(contentsOf: [
+                containerViewTopSpaceConstraint,
+                containerViewRightSpaceConstraint,
+                containerViewLeftSpaceConstraint,
+                containerViewBottomSpaceConstraint
+            ])
+        self.view.addConstraints(constraints)
     }
     
     // Reload AlertView Height
@@ -951,6 +1075,10 @@ public class AlertView: UIViewController, UITextFieldDelegate, UIViewControllerT
         if let c = self.tappedButtonClosure {
             c(sender.tag - Int.baseTag)
         }
+    }
+    
+    @objc fileprivate func sharedCancelButtonTapped(_ sender: UIButton) {
+        self.dismiss(animated: true, completion: nil)
     }
     
     // Handle ContainerView tap gesture
@@ -995,4 +1123,48 @@ extension AlertView: UIGestureRecognizerDelegate {
         return !(touch.view is UIButton)
     }
     
+}
+
+extension AlertView: UICollectionViewDelegate {
+    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        collectionView.deselectItem(at: indexPath, animated: true)
+    }
+}
+
+extension AlertView: UICollectionViewDataSource {
+    func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
+        let itemCell = collectionView.dequeueReusableCell(withReuseIdentifier: String(describing: AlertSharedItemCell.self), for: indexPath) as! AlertSharedItemCell
+        
+        return itemCell
+    }
+
+    func numberOfSections(in collectionView: UICollectionView) -> Int {
+        return 1
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
+        return self.sharedItems.count
+    }
+}
+
+extension AlertView: UICollectionViewDelegateFlowLayout {
+    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout,    section: Int) -> CGFloat {
+        return 0.01
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumInteritemSpacingForSectionAt section: Int) -> CGFloat {
+        return 0.01
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, insetForSectionAt section: Int) -> UIEdgeInsets {
+        return UIEdgeInsets.zero
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
+        let count = self.sharedItems.count
+        let separator = count <= .sharedItemOnOneColumn ? count : .sharedItemOnOneColumn
+        let width = CGFloat(ceil(Double(CGSize.screenSize.width / CGFloat(separator))))
+        return CGSize(width: width, height: 64.0)
+
+    }
 }

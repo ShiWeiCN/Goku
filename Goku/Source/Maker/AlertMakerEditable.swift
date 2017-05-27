@@ -52,4 +52,11 @@ public class AlertMakerEditable: AlertMakerFinalizable {
         return self
     }
     
+    @discardableResult
+    public func shares(_ shares: [AlertSharedItem], _ file: String = #file, _ line: UInt = #line) -> AlertMakerEditable {
+        self.description.shares = shares
+        self.description.attributes += .share
+        return self
+    }
+    
 }

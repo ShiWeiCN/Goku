@@ -61,6 +61,10 @@ internal struct AlertAttributes: OptionSet {
     internal static var notice: AlertAttributes { return self.init(256) }
     internal static var question: AlertAttributes { return self.init(512) }
     
+    // MARK: - Share
+    // Show action sheet for social sharing
+    internal static var share: AlertAttributes { return self.init(2048) }
+    
     // Custom Alert View Content
     internal static var owner: AlertAttributes { return self.init(1024) }
     
