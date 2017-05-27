@@ -197,10 +197,12 @@ final class AlertView: UIViewController, UITextFieldDelegate, UIViewControllerTr
     
     // Shared collection view
     lazy fileprivate var collectionView: UICollectionView = {
-        let layout = UICollectionViewLayout()
+        let layout = UICollectionViewFlowLayout()
         let collectionView = UICollectionView(frame: .zero, collectionViewLayout: layout)
         collectionView.delegate = self
         collectionView.dataSource = self
+        collectionView.showsVerticalScrollIndicator = false
+        collectionView.showsHorizontalScrollIndicator = false
         collectionView.backgroundColor = .white
         collectionView.register(AlertSharedItemCell.self, forCellWithReuseIdentifier: String(describing: AlertSharedItemCell.self))
         return collectionView
@@ -1149,11 +1151,11 @@ extension AlertView: UICollectionViewDataSource {
 
 extension AlertView: UICollectionViewDelegateFlowLayout {
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout,    section: Int) -> CGFloat {
-        return 0.01
+        return 0
     }
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumInteritemSpacingForSectionAt section: Int) -> CGFloat {
-        return 0.01
+        return 0
     }
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, insetForSectionAt section: Int) -> UIEdgeInsets {
@@ -1163,8 +1165,9 @@ extension AlertView: UICollectionViewDelegateFlowLayout {
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
         let count = self.sharedItems.count
         let separator = count <= .sharedItemOnOneColumn ? count : .sharedItemOnOneColumn
-        let width = CGFloat(ceil(Double(CGSize.screenSize.width / CGFloat(separator))))
-        return CGSize(width: width, height: 64.0)
+        let width = CGSize.screenSize.width / CGFloat(separator)
+        let newWidth = width.rounded(.towardZero)
+        return CGSize(width: newWidth, height: 64.0)
 
     }
 }
