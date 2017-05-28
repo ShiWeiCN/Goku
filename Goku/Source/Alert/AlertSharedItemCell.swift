@@ -26,7 +26,7 @@ internal class AlertSharedItemCell: UICollectionViewCell {
     
     lazy private var sharedTitleLabel: UILabel = {
         let titleLabel = UILabel(frame: .zero)
-        titleLabel.font = UIFont.systemFont(ofSize: 12, weight: UIFontWeightRegular)
+        titleLabel.font = UIFont.systemFont(ofSize: 12)
         titleLabel.textColor = UIColor(hex: 0x000000)
         titleLabel.textAlignment = .center
         titleLabel.sizeToFit()
