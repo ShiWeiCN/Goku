@@ -198,12 +198,15 @@ final class AlertView: UIViewController, UITextFieldDelegate, UIViewControllerTr
     // Shared collection view
     lazy fileprivate var collectionView: UICollectionView = {
         let layout = UICollectionViewFlowLayout()
+        layout.minimumLineSpacing = 0
+        layout.minimumInteritemSpacing = 0
         let collectionView = UICollectionView(frame: .zero, collectionViewLayout: layout)
         collectionView.delegate = self
         collectionView.dataSource = self
         collectionView.showsVerticalScrollIndicator = false
         collectionView.showsHorizontalScrollIndicator = false
         collectionView.backgroundColor = .white
+        collectionView.isUserInteractionEnabled = true
         collectionView.register(AlertSharedItemCell.self, forCellWithReuseIdentifier: String(describing: AlertSharedItemCell.self))
         return collectionView
     }()
@@ -326,12 +329,14 @@ final class AlertView: UIViewController, UITextFieldDelegate, UIViewControllerTr
     
     override open func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
-        // Add Gesture
-        if (!isAlert() && cancelButtonTag != Int.baseTag) {
-            let tap = UITapGestureRecognizer(target: self,
-                                             action: .handleContainerViewTapGesture)
-            tap.delegate = self
-            containerView.addGestureRecognizer(tap)
+        // Add Gesture if is not shared action sheet
+        if !isShared {
+            if (!isAlert() && cancelButtonTag != Int.baseTag) {
+                let tap = UITapGestureRecognizer(target: self,
+                                                 action: .handleContainerViewTapGesture)
+                tap.delegate = self
+                containerView.addGestureRecognizer(tap)
+            }
         }
     }
     
@@ -1130,13 +1135,18 @@ extension AlertView: UIGestureRecognizerDelegate {
 extension AlertView: UICollectionViewDelegate {
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         collectionView.deselectItem(at: indexPath, animated: true)
+        self.dismiss(animated: true, completion: nil)
+        if let closure = self.tappedButtonClosure {
+            closure(indexPath.row)
+        }
     }
 }
 
 extension AlertView: UICollectionViewDataSource {
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let itemCell = collectionView.dequeueReusableCell(withReuseIdentifier: String(describing: AlertSharedItemCell.self), for: indexPath) as! AlertSharedItemCell
-        
+        itemCell.bindAlertSharedItem(self.sharedItems[indexPath.row])
+        itemCell.rightVerticalSeparatorView.isHidden = (indexPath.row + 1) % 3 == 0
         return itemCell
     }
 
@@ -1150,18 +1160,6 @@ extension AlertView: UICollectionViewDataSource {
 }
 
 extension AlertView: UICollectionViewDelegateFlowLayout {
-    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout,    section: Int) -> CGFloat {
-        return 0
-    }
-    
-    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumInteritemSpacingForSectionAt section: Int) -> CGFloat {
-        return 0
-    }
-    
-    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, insetForSectionAt section: Int) -> UIEdgeInsets {
-        return UIEdgeInsets.zero
-    }
-    
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
         let count = self.sharedItems.count
         let separator = count <= .sharedItemOnOneColumn ? count : .sharedItemOnOneColumn

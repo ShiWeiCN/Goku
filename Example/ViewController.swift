@@ -164,9 +164,9 @@ class ViewController: UITableViewController {
             })
         case (3, 0):
             let shares = [
-                AlertSharedItem(platform: "微信", platformImage: ""),
-                AlertSharedItem(platform: "微信", platformImage: ""),
-                AlertSharedItem(platform: "微信", platformImage: "")
+                AlertSharedItem(platform: "跳转途牛官网", platformImage: "tuniu_shared"),
+                AlertSharedItem(platform: "微信朋友圈", platformImage: "wechat _friend"),
+                AlertSharedItem(platform: "微信好友", platformImage: "wechat")
             ]
             self.goku.presentAlert(animated: true, closure: { (make) in
                 make.actionSheet
@@ -174,7 +174,7 @@ class ViewController: UITableViewController {
                     .cancel("取消")
                     .shares(shares)
                     .tapped({ (index) in
-                        
+                        print("You just tapped the button which index is \(index)")
                     }
                 )
             })
