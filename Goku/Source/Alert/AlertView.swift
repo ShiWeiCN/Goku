@@ -1147,7 +1147,6 @@ extension AlertView: UICollectionViewDataSource {
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let itemCell = collectionView.dequeueReusableCell(withReuseIdentifier: String(describing: AlertSharedItemCell.self), for: indexPath) as! AlertSharedItemCell
         itemCell.bindAlertSharedItem(self.sharedItems[indexPath.row])
-        itemCell.rightVerticalSeparatorView.isHidden = (indexPath.row + 1) % 3 == 0
         let edges: UIRectEdge = (indexPath.row + 1) % 3 == 0 ? [] : [.right]
         itemCell.addBorder(edges: edges)
         return itemCell
