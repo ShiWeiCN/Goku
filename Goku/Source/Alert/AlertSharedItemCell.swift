@@ -43,7 +43,7 @@ internal class AlertSharedItemCell: UICollectionViewCell {
     
     override init(frame: CGRect) {
         super.init(frame: frame)
-        assembleSeparator()
+//        assembleSeparator()
         configurationSubViews()
     }
     

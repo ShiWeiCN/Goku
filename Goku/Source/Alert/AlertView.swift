@@ -192,6 +192,7 @@ final class AlertView: UIViewController, UITextFieldDelegate, UIViewControllerTr
         }
         button.titleLabel?.font = self.theme.buttonTitleFont
         button.addTarget(self, action: .sharedCancelButtonTapped, for: .touchUpInside)
+        button.addBorder(edges: [.top])
         return button
     }()
     
@@ -1147,6 +1148,8 @@ extension AlertView: UICollectionViewDataSource {
         let itemCell = collectionView.dequeueReusableCell(withReuseIdentifier: String(describing: AlertSharedItemCell.self), for: indexPath) as! AlertSharedItemCell
         itemCell.bindAlertSharedItem(self.sharedItems[indexPath.row])
         itemCell.rightVerticalSeparatorView.isHidden = (indexPath.row + 1) % 3 == 0
+        let edges: UIRectEdge = (indexPath.row + 1) % 3 == 0 ? [] : [.right]
+        itemCell.addBorder(edges: edges)
         return itemCell
     }
 
