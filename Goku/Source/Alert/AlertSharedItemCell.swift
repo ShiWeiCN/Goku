@@ -10,20 +10,6 @@ import UIKit
 
 internal class AlertSharedItemCell: UICollectionViewCell {
     
-    lazy public var rightVerticalSeparatorView: UIView = {
-        let separator = UIView(frame: .zero)
-        separator.backgroundColor = UIColor(hex: 0xCBCBCB)
-        separator.translatesAutoresizingMaskIntoConstraints = false
-        return separator
-    }()
-    
-    lazy private var bottomSpearatorView: UIView = {
-        let bottomSeparator = UIView(frame: .zero)
-        bottomSeparator.backgroundColor = UIColor(hex: 0xCBCBCB)
-        bottomSeparator.translatesAutoresizingMaskIntoConstraints = false
-        return bottomSeparator
-    }()
-    
     lazy private var sharedTitleLabel: UILabel = {
         let titleLabel = UILabel(frame: .zero)
         titleLabel.font = UIFont.systemFont(ofSize: 12)
@@ -43,7 +29,6 @@ internal class AlertSharedItemCell: UICollectionViewCell {
     
     override init(frame: CGRect) {
         super.init(frame: frame)
-//        assembleSeparator()
         configurationSubViews()
     }
     
@@ -68,34 +53,6 @@ internal class AlertSharedItemCell: UICollectionViewCell {
                     platformImageViewHeightConstraint
                 ])
         }
-    }
-    
-    private func assembleSeparator() {
-        
-        self.contentView.addSubview(self.bottomSpearatorView)
-        self.contentView.addSubview(self.rightVerticalSeparatorView)
-        
-        let bottomSeparatorRight = NSLayoutConstraint(item: self.bottomSpearatorView, attribute: .right, relatedBy: .equal, toItem: self.contentView, attribute: .right, multiplier: 1.0, constant: 0.0)
-        let bottomSeparatorLeft = NSLayoutConstraint(item: self.bottomSpearatorView, attribute: .left, relatedBy: .equal, toItem: self.contentView, attribute: .left, multiplier: 1.0, constant: 0.0)
-        let bottomSeparatorBottom = NSLayoutConstraint(item: self.bottomSpearatorView, attribute: .bottom, relatedBy: .equal, toItem: self.contentView, attribute: .bottom, multiplier: 1.0, constant: 0.0)
-        let leftSeparatorTopConstraint = NSLayoutConstraint(item: rightVerticalSeparatorView, attribute: .top, relatedBy: .equal, toItem: self.contentView, attribute: .top, multiplier: 1.0, constant: 0.0)
-        let leftSeparatorBottomConstraint = NSLayoutConstraint(item: rightVerticalSeparatorView, attribute: .bottom, relatedBy: .equal, toItem: contentView, attribute: .bottom, multiplier: 1.0, constant: 0.0)
-        let leftSeparatorRightConstraint = NSLayoutConstraint(item: rightVerticalSeparatorView, attribute: .right, relatedBy: .equal, toItem: self.contentView, attribute: .right, multiplier: 1.0, constant: 0.0)
-        
-        self.contentView.addConstraints([
-                bottomSeparatorBottom,
-                bottomSeparatorLeft,
-                bottomSeparatorRight,
-                leftSeparatorTopConstraint,
-                leftSeparatorRightConstraint,
-                leftSeparatorBottomConstraint
-            ])
-        
-        let separatorHeight = NSLayoutConstraint(item: bottomSpearatorView, attribute: .height, relatedBy: .equal, toItem: nil, attribute: .height, multiplier: 1.0, constant: 0.5)
-        bottomSpearatorView.addConstraint(separatorHeight)
-        
-        let leftSeparatorWidth = NSLayoutConstraint(item: rightVerticalSeparatorView, attribute: .width, relatedBy: .equal, toItem: nil, attribute: .width, multiplier: 1.0, constant: 0.5)
-        rightVerticalSeparatorView.addConstraint(leftSeparatorWidth)
     }
     
     private func configurationSubViews() {
