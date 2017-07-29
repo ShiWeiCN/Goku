@@ -164,9 +164,9 @@ class ViewController: UITableViewController {
             })
         case (3, 0):
             let shares = [
-                AlertSharedItem(platform: "跳转途牛官网", platformImage: "tuniu_shared"),
-                AlertSharedItem(platform: "微信朋友圈", platformImage: "wechat _friend"),
-                AlertSharedItem(platform: "微信好友", platformImage: "wechat")
+                AlertSharedItem(platform: "跳转途牛官网", platformImage: UIImage(named: "tuniu_shared")),
+                AlertSharedItem(platform: "微信朋友圈", platformImage: UIImage(named: "wechat _friend")),
+                AlertSharedItem(platform: "微信好友", platformImage: UIImage(named: "wechat"))
             ]
             self.goku.presentAlert(animated: true, closure: { (make) in
                 make.actionSheet

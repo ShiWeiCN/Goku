@@ -28,9 +28,9 @@
 
 public struct AlertSharedItem {
     let platform: String
-    let platformImage: String
+    let platformImage: UIImage?
     
-    public init(platform: String, platformImage: String) {
+    public init(platform: String, platformImage: UIImage?) {
         self.platform = platform
         self.platformImage = platformImage
     }

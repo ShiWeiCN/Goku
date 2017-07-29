@@ -38,8 +38,8 @@ internal class AlertSharedItemCell: UICollectionViewCell {
     
     public func bindAlertSharedItem(_ item: AlertSharedItem) {
         self.sharedTitleLabel.text = item.platform
-        if let platform = UIImage(named: item.platformImage) {
-            self.sharedPlatformImageView.image = platform
+        self.sharedPlatformImageView.image = item.platformImage
+        if let platform: UIImage = item.platformImage {
             let width = platform.size.width
             let height = platform.size.height
             
@@ -49,8 +49,8 @@ internal class AlertSharedItemCell: UICollectionViewCell {
             let platformImageViewHeightConstraint = NSLayoutConstraint(item: self.sharedPlatformImageView, attribute: .height, relatedBy: .equal, toItem: nil, attribute: .height, multiplier: 1.0, constant: 28.0)
             let platformImageViewWidthConstraint = NSLayoutConstraint(item: self.sharedPlatformImageView, attribute: .width, relatedBy: .equal, toItem: nil, attribute: .width, multiplier: 1.0, constant: newWidth)
             self.sharedPlatformImageView.addConstraints([
-                    platformImageViewWidthConstraint,
-                    platformImageViewHeightConstraint
+                platformImageViewWidthConstraint,
+                platformImageViewHeightConstraint
                 ])
         }
     }
