@@ -1078,7 +1078,7 @@ final class AlertView: UIViewController, UITextFieldDelegate, UIViewControllerTr
     }
     
     // Button Tapped Action
-    func buttonTapped(_ sender: UIButton) {
+    @objc func buttonTapped(_ sender: UIButton) {
         self.dismiss(animated: true, completion: nil)
         if let c = self.tappedButtonClosure {
             c(sender.tag - Int.baseTag)
@@ -1090,7 +1090,7 @@ final class AlertView: UIViewController, UITextFieldDelegate, UIViewControllerTr
     }
     
     // Handle ContainerView tap gesture
-    func handleContainerViewTapGesture(_ sender: AnyObject) {
+    @objc func handleContainerViewTapGesture(_ sender: AnyObject) {
         // cancel action
         self.dismiss(animated: true, completion: nil)
         if let c = self.tappedButtonClosure,

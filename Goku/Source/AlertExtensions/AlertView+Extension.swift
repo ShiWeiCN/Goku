@@ -50,11 +50,11 @@ public extension UIView {
 
 internal extension String {
     func height(_ width: CGFloat, font: UIFont, lineBreakMode: NSLineBreakMode?) -> CGFloat {
-        var attrib: [String: AnyObject] = [NSFontAttributeName: font]
+        var attrib: [NSAttributedStringKey: AnyObject] = [NSAttributedStringKey.font: font]
         if lineBreakMode != nil {
             let paragraphStyle = NSMutableParagraphStyle();
             paragraphStyle.lineBreakMode = lineBreakMode!;
-            attrib.updateValue(paragraphStyle, forKey: NSParagraphStyleAttributeName);
+            attrib.updateValue(paragraphStyle, forKey: NSAttributedStringKey.paragraphStyle);
         }
         let size = CGSize(width: width, height: CGFloat(Double.greatestFiniteMagnitude));
         return ceil((self as NSString).boundingRect(with: size, options: NSStringDrawingOptions.usesLineFragmentOrigin, attributes:attrib, context: nil).height)
