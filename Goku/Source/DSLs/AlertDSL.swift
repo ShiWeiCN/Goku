@@ -36,7 +36,7 @@ internal protocol AlertDSL {
 
 internal extension AlertDSL {
     internal func setLabel(_ value: String?) {
-        objc_setAssociatedObject(self.target, &labelKey, value, .OBJC_ASSOCIATION_COPY_NONATOMIC)
+        objc_setAssociatedObject(self.target as Any, &labelKey, value, .OBJC_ASSOCIATION_COPY_NONATOMIC)
     }
     internal func label() -> String? {
         return objc_getAssociatedObject(self.target, &labelKey) as? String

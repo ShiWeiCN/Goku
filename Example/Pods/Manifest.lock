@@ -1,0 +1,16 @@
+PODS:
+  - Goku (1.5)
+
+DEPENDENCIES:
+  - Goku (from `../../Goku`)
+
+EXTERNAL SOURCES:
+  Goku:
+    :path: "../../Goku"
+
+SPEC CHECKSUMS:
+  Goku: e30f8c331d05e1d471b433ce5b1eb29c66caa51b
+
+PODFILE CHECKSUM: d0f75264f9019d826a9115b66483aa5294e0248a
+
+COCOAPODS: 1.2.0

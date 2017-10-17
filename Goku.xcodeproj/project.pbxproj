@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		71760F27998AF6BE9267946E /* Pods_GokuTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A71F1780E0F890AF400BD245 /* Pods_GokuTests.framework */; };
 		89109C1D1E24BF5F002973E8 /* Goku.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 89109C131E24BF5F002973E8 /* Goku.framework */; };
 		89109C221E24BF5F002973E8 /* GokuTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 89109C211E24BF5F002973E8 /* GokuTests.swift */; };
 		89109C241E24BF5F002973E8 /* Goku.h in Headers */ = {isa = PBXBuildFile; fileRef = 89109C161E24BF5F002973E8 /* Goku.h */; settings = {ATTRIBUTES = (Public, ); }; };
@@ -36,6 +37,7 @@
 		89109CD51E24DD76002973E8 /* AlertPrompt.swift in Sources */ = {isa = PBXBuildFile; fileRef = 89109CBC1E24DD76002973E8 /* AlertPrompt.swift */; };
 		89109CD61E24DD76002973E8 /* PresentController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 89109CBD1E24DD76002973E8 /* PresentController.swift */; };
 		89B9C6D91ED975BC00662373 /* AlertSharedItemCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 89B9C6D81ED975BC00662373 /* AlertSharedItemCell.swift */; };
+		C5B0617276DA2DA905654035 /* Pods_Goku.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F597044AF4D5FC0B06C86F52 /* Pods_Goku.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -49,6 +51,9 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		04D41152F401FDE0E37427D3 /* Pods-Goku.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Goku.release.xcconfig"; path = "Pods/Target Support Files/Pods-Goku/Pods-Goku.release.xcconfig"; sourceTree = "<group>"; };
+		4169650DB703CCF16533B89B /* Pods-Goku.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Goku.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Goku/Pods-Goku.debug.xcconfig"; sourceTree = "<group>"; };
+		69640B3D2CB8F481264B0582 /* Pods-GokuTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-GokuTests.release.xcconfig"; path = "Pods/Target Support Files/Pods-GokuTests/Pods-GokuTests.release.xcconfig"; sourceTree = "<group>"; };
 		89109C131E24BF5F002973E8 /* Goku.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Goku.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		89109C161E24BF5F002973E8 /* Goku.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Goku.h; sourceTree = "<group>"; };
 		89109C171E24BF5F002973E8 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -81,6 +86,9 @@
 		89109CBC1E24DD76002973E8 /* AlertPrompt.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AlertPrompt.swift; sourceTree = "<group>"; };
 		89109CBD1E24DD76002973E8 /* PresentController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PresentController.swift; sourceTree = "<group>"; };
 		89B9C6D81ED975BC00662373 /* AlertSharedItemCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AlertSharedItemCell.swift; sourceTree = "<group>"; };
+		A71F1780E0F890AF400BD245 /* Pods_GokuTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_GokuTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		F597044AF4D5FC0B06C86F52 /* Pods_Goku.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Goku.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		F6007E09F2AF5BDBABF00C26 /* Pods-GokuTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-GokuTests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-GokuTests/Pods-GokuTests.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -88,6 +96,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				C5B0617276DA2DA905654035 /* Pods_Goku.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -96,18 +105,32 @@
 			buildActionMask = 2147483647;
 			files = (
 				89109C1D1E24BF5F002973E8 /* Goku.framework in Frameworks */,
+				71760F27998AF6BE9267946E /* Pods_GokuTests.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		84EA7F569CEFEF88C841F8EA /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				4169650DB703CCF16533B89B /* Pods-Goku.debug.xcconfig */,
+				04D41152F401FDE0E37427D3 /* Pods-Goku.release.xcconfig */,
+				F6007E09F2AF5BDBABF00C26 /* Pods-GokuTests.debug.xcconfig */,
+				69640B3D2CB8F481264B0582 /* Pods-GokuTests.release.xcconfig */,
+			);
+			name = Pods;
+			sourceTree = "<group>";
+		};
 		89109C091E24BF5F002973E8 = {
 			isa = PBXGroup;
 			children = (
 				89109C151E24BF5F002973E8 /* Goku */,
 				89109C201E24BF5F002973E8 /* GokuTests */,
 				89109C141E24BF5F002973E8 /* Products */,
+				84EA7F569CEFEF88C841F8EA /* Pods */,
+				BE30DC98F83A37D7CD722321 /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -212,6 +235,15 @@
 			path = Models;
 			sourceTree = "<group>";
 		};
+		BE30DC98F83A37D7CD722321 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				F597044AF4D5FC0B06C86F52 /* Pods_Goku.framework */,
+				A71F1780E0F890AF400BD245 /* Pods_GokuTests.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXHeadersBuildPhase section */
@@ -230,10 +262,12 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 89109C271E24BF5F002973E8 /* Build configuration list for PBXNativeTarget "Goku" */;
 			buildPhases = (
+				B471928A65B3FE6E15E2B93C /* [CP] Check Pods Manifest.lock */,
 				89109C0E1E24BF5F002973E8 /* Sources */,
 				89109C0F1E24BF5F002973E8 /* Frameworks */,
 				89109C101E24BF5F002973E8 /* Headers */,
 				89109C111E24BF5F002973E8 /* Resources */,
+				028DA355C0B84E897A26722C /* [CP] Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -248,9 +282,12 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 89109C2A1E24BF5F002973E8 /* Build configuration list for PBXNativeTarget "GokuTests" */;
 			buildPhases = (
+				AED43E066A0736BE937EB545 /* [CP] Check Pods Manifest.lock */,
 				89109C181E24BF5F002973E8 /* Sources */,
 				89109C191E24BF5F002973E8 /* Frameworks */,
 				89109C1A1E24BF5F002973E8 /* Resources */,
+				79D3FB7010EB25375A2A27E6 /* [CP] Embed Pods Frameworks */,
+				5D946A3D6C503ECC75C52A16 /* [CP] Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -317,6 +354,84 @@
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXResourcesBuildPhase section */
+
+/* Begin PBXShellScriptBuildPhase section */
+		028DA355C0B84E897A26722C /* [CP] Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Copy Pods Resources";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-Goku/Pods-Goku-resources.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		5D946A3D6C503ECC75C52A16 /* [CP] Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Copy Pods Resources";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-GokuTests/Pods-GokuTests-resources.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		79D3FB7010EB25375A2A27E6 /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-GokuTests/Pods-GokuTests-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		AED43E066A0736BE937EB545 /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n";
+			showEnvVarsInLog = 0;
+		};
+		B471928A65B3FE6E15E2B93C /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
 		89109C0E1E24BF5F002973E8 /* Sources */ = {
@@ -484,6 +599,7 @@
 		};
 		89109C281E24BF5F002973E8 /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 4169650DB703CCF16533B89B /* Pods-Goku.debug.xcconfig */;
 			buildSettings = {
 				CODE_SIGN_IDENTITY = "";
 				DEFINES_MODULE = YES;
@@ -503,6 +619,7 @@
 		};
 		89109C291E24BF5F002973E8 /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 04D41152F401FDE0E37427D3 /* Pods-Goku.release.xcconfig */;
 			buildSettings = {
 				CODE_SIGN_IDENTITY = "";
 				DEFINES_MODULE = YES;
@@ -522,6 +639,7 @@
 		};
 		89109C2B1E24BF5F002973E8 /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = F6007E09F2AF5BDBABF00C26 /* Pods-GokuTests.debug.xcconfig */;
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				INFOPLIST_FILE = GokuTests/Info.plist;
@@ -534,6 +652,7 @@
 		};
 		89109C2C1E24BF5F002973E8 /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 69640B3D2CB8F481264B0582 /* Pods-GokuTests.release.xcconfig */;
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				INFOPLIST_FILE = GokuTests/Info.plist;
