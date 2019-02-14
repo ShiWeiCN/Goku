@@ -1,18 +1,18 @@
 {
   "name": "Goku",
-  "version": "1.5",
+  "version": "2.0.0",
   "license": "MIT",
-  "summary": "😊 Goku is an alert view written by swift 3, support both action sheet and alert view style.",
-  "homepage": "https://github.com/ShiWeiCN/Goku",
+  "summary": "😊 Goku is an alert view written by swift 4.0, support both action sheet and alert view style.",
+  "homepage": "https://github.com/shiwei93/Goku",
   "authors": {
-    "Shi Wei": "stayfocusjs@gmail.com"
+    "shiwei93": "stayfocusjs@gmail.com"
   },
   "source": {
-    "git": "https://github.com/ShiWeiCN/Goku.git",
-    "tag": "1.5"
+    "git": "https://github.com/shiwei93/Goku.git",
+    "tag": "2.0.0"
   },
   "platforms": {
-    "ios": "8.0"
+    "ios": "9.0"
   },
   "ios": {
     "frameworks": [
@@ -20,6 +20,6 @@
       "Foundation"
     ]
   },
-  "source_files": "Goku/Source/**/*.swift",
-  "requires_arc": true
+  "source_files": "Source/**/*.swift",
+  "swift_version": "4.2"
 }

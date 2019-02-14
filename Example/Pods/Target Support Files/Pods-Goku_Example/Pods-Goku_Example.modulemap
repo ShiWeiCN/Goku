@@ -1,0 +1,6 @@
+module Pods_Goku_Example {
+  umbrella header "Pods-Goku_Example-umbrella.h"
+
+  export *
+  module * { export * }
+}
