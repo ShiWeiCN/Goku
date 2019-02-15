@@ -25,6 +25,10 @@
 		7F11571C52A7C9ABA4D085C690EC9099 /* Goku-dummy.m in Sources */ = {isa = PBXBuildFile; fileRef = 8E85B2746EB724361937691F26A958D3 /* Goku-dummy.m */; };
 		806A2966B42CC38F8124B7AC1A0F0784 /* AlertExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = FE9B6AC36BCA741C9D78B3C61EB75B49 /* AlertExtensions.swift */; };
 		823F5FD331017042A13F9E2DC6B3277C /* AlertAttributes.swift in Sources */ = {isa = PBXBuildFile; fileRef = FACA289FEB13B62D4F5F7625973B1256 /* AlertAttributes.swift */; };
+		8942BDF52215843B000D0990 /* GokuAnimation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8942BDF42215843B000D0990 /* GokuAnimation.swift */; };
+		8942BDF722164FF2000D0990 /* GokuAlertViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8942BDF622164FF2000D0990 /* GokuAlertViewController.swift */; };
+		8942BDF9221699AB000D0990 /* GokuAlertRootView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8942BDF8221699AB000D0990 /* GokuAlertRootView.swift */; };
+		8942BDFB22169C62000D0990 /* GokuAlertSetting.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8942BDFA22169C62000D0990 /* GokuAlertSetting.swift */; };
 		8F01E3BF62045019B40E15E47D226E8C /* AlertViewControllerDSL.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B613433F03FB7D5F2916135BD682E7E /* AlertViewControllerDSL.swift */; };
 		969CF082DD112E63094D2B84E1E7AF3F /* AlertStyle.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D49997C06D04AB99668B664DB2706CB /* AlertStyle.swift */; };
 		9F051FA8B52B93947511D10CE3DAD9E9 /* AlertView+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7948BB5DA6CAFE7812C1380CBC1547B9 /* AlertView+Extension.swift */; };
@@ -63,7 +67,7 @@
 		4126727C3D995D857F5D6D908BB3A3FA /* AlertSharedItemCell.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = AlertSharedItemCell.swift; sourceTree = "<group>"; };
 		44DEC5B05E7307B559839E64F98CA364 /* Pods-Goku_Example.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = "Pods-Goku_Example.debug.xcconfig"; sourceTree = "<group>"; };
 		49E77739668A7968A52608085C2D71C5 /* Goku-prefix.pch */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "Goku-prefix.pch"; sourceTree = "<group>"; };
-		52139A2C5552B5FCBBED23E85A06D6DC /* README.md */ = {isa = PBXFileReference; includeInIndex = 1; path = README.md; sourceTree = "<group>"; };
+		52139A2C5552B5FCBBED23E85A06D6DC /* README.md */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
 		5D7457AD7A34ED78FCC1B81A20EBE7B7 /* AlertMakerEditable.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = AlertMakerEditable.swift; sourceTree = "<group>"; };
 		607608F1FB4B8AC4D53E6E1FCFEA8213 /* Pods-Goku_Example-acknowledgements.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = "Pods-Goku_Example-acknowledgements.plist"; sourceTree = "<group>"; };
 		684032A8EBD02FB97CF915FBAE719080 /* AlertMakerFinalizable.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = AlertMakerFinalizable.swift; sourceTree = "<group>"; };
@@ -73,19 +77,23 @@
 		7948BB5DA6CAFE7812C1380CBC1547B9 /* AlertView+Extension.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = "AlertView+Extension.swift"; sourceTree = "<group>"; };
 		7ABBD0414D050320B48F5A3C3828C512 /* AlertViewStyleKit.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = AlertViewStyleKit.swift; sourceTree = "<group>"; };
 		7D49997C06D04AB99668B664DB2706CB /* AlertStyle.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = AlertStyle.swift; sourceTree = "<group>"; };
+		8942BDF42215843B000D0990 /* GokuAnimation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GokuAnimation.swift; sourceTree = "<group>"; };
+		8942BDF622164FF2000D0990 /* GokuAlertViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GokuAlertViewController.swift; sourceTree = "<group>"; };
+		8942BDF8221699AB000D0990 /* GokuAlertRootView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GokuAlertRootView.swift; sourceTree = "<group>"; };
+		8942BDFA22169C62000D0990 /* GokuAlertSetting.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GokuAlertSetting.swift; sourceTree = "<group>"; };
 		8C8049B7193D2F9758717B6BDC920D65 /* CGFloatExtensions.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = CGFloatExtensions.swift; sourceTree = "<group>"; };
 		8E85B2746EB724361937691F26A958D3 /* Goku-dummy.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = "Goku-dummy.m"; sourceTree = "<group>"; };
 		902C11AD2A4771004269BDFAEAFE378A /* AlertMaker.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = AlertMaker.swift; sourceTree = "<group>"; };
 		911B9BC41FF32D644AA25FC8E37E82EC /* Goku-umbrella.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "Goku-umbrella.h"; sourceTree = "<group>"; };
-		95522BFEFAF7D369DA84E9D7E0116688 /* libPods-Goku_Example.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; name = "libPods-Goku_Example.a"; path = "libPods-Goku_Example.a"; sourceTree = BUILT_PRODUCTS_DIR; };
-		9BA07791B1168A3E8A367ED99C751139 /* libGoku.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; name = libGoku.a; path = libGoku.a; sourceTree = BUILT_PRODUCTS_DIR; };
+		95522BFEFAF7D369DA84E9D7E0116688 /* libPods-Goku_Example.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-Goku_Example.a"; sourceTree = BUILT_PRODUCTS_DIR; };
+		9BA07791B1168A3E8A367ED99C751139 /* libGoku.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libGoku.a; sourceTree = BUILT_PRODUCTS_DIR; };
 		9D2E8E4319584E32990904DB582CA9BF /* AlertAnimation.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = AlertAnimation.swift; sourceTree = "<group>"; };
-		9D940727FF8FB9C785EB98E56350EF41 /* Podfile */ = {isa = PBXFileReference; explicitFileType = text.script.ruby; includeInIndex = 1; indentWidth = 2; lastKnownFileType = text; name = Podfile; path = ../Podfile; sourceTree = SOURCE_ROOT; tabWidth = 2; xcLanguageSpecificationIdentifier = xcode.lang.ruby; };
+		9D940727FF8FB9C785EB98E56350EF41 /* Podfile */ = {isa = PBXFileReference; explicitFileType = text.script.ruby; includeInIndex = 1; indentWidth = 2; name = Podfile; path = ../Podfile; sourceTree = SOURCE_ROOT; tabWidth = 2; xcLanguageSpecificationIdentifier = xcode.lang.ruby; };
 		A4B83E823A531E2721A8750E175D6FCD /* AlertMakerExtendable.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = AlertMakerExtendable.swift; sourceTree = "<group>"; };
 		BF33ECF158BAA4C822604347D121E9DE /* Goku.modulemap */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.module; path = Goku.modulemap; sourceTree = "<group>"; };
 		C48689E612422FFBC116C9D5F034AA5E /* AlertDescription.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = AlertDescription.swift; sourceTree = "<group>"; };
-		C5C9C2803E98CB7F46A27268D42800A3 /* LICENSE */ = {isa = PBXFileReference; includeInIndex = 1; path = LICENSE; sourceTree = "<group>"; };
-		CCD4A405DBBCD133DCB18FAE4CFE25D9 /* Goku.podspec */ = {isa = PBXFileReference; explicitFileType = text.script.ruby; includeInIndex = 1; indentWidth = 2; lastKnownFileType = text; path = Goku.podspec; sourceTree = "<group>"; tabWidth = 2; xcLanguageSpecificationIdentifier = xcode.lang.ruby; };
+		C5C9C2803E98CB7F46A27268D42800A3 /* LICENSE */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text; path = LICENSE; sourceTree = "<group>"; };
+		CCD4A405DBBCD133DCB18FAE4CFE25D9 /* Goku.podspec */ = {isa = PBXFileReference; explicitFileType = text.script.ruby; includeInIndex = 1; indentWidth = 2; path = Goku.podspec; sourceTree = "<group>"; tabWidth = 2; xcLanguageSpecificationIdentifier = xcode.lang.ruby; };
 		D51704B09B5A0B2B99990005B3F536FD /* AlertTarget.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = AlertTarget.swift; sourceTree = "<group>"; };
 		DDEB9D27376E20F6C73838A7706CF3F1 /* Pods-Goku_Example-dummy.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = "Pods-Goku_Example-dummy.m"; sourceTree = "<group>"; };
 		E1E872529505A31BA6EDD17C40CAAD86 /* AlertView.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = AlertView.swift; sourceTree = "<group>"; };
@@ -189,6 +197,7 @@
 		4DBCA2A7094E68F03771DD135BF70C2E /* Goku */ = {
 			isa = PBXGroup;
 			children = (
+				8942BDF32215841E000D0990 /* Animation */,
 				E6DAB6D7424E7B08C40C8FE04A54C5E0 /* Alert */,
 				3120E4FB9C22B6928C1724ECF93953BE /* AlertExtensions */,
 				8DEC8CC67FDE9D63BBF302AE5BAED6AC /* DSLs */,
@@ -199,6 +208,15 @@
 			);
 			name = Goku;
 			path = ../..;
+			sourceTree = "<group>";
+		};
+		8942BDF32215841E000D0990 /* Animation */ = {
+			isa = PBXGroup;
+			children = (
+				8942BDF42215843B000D0990 /* GokuAnimation.swift */,
+			);
+			name = Animation;
+			path = Source/Classes/Animation;
 			sourceTree = "<group>";
 		};
 		8DEC8CC67FDE9D63BBF302AE5BAED6AC /* DSLs */ = {
@@ -254,6 +272,8 @@
 		E6DAB6D7424E7B08C40C8FE04A54C5E0 /* Alert */ = {
 			isa = PBXGroup;
 			children = (
+				8942BDF622164FF2000D0990 /* GokuAlertViewController.swift */,
+				8942BDF8221699AB000D0990 /* GokuAlertRootView.swift */,
 				9D2E8E4319584E32990904DB582CA9BF /* AlertAnimation.swift */,
 				6F39C944734A35EB0EF007D95458C501 /* AlertItemStyle.swift */,
 				4126727C3D995D857F5D6D908BB3A3FA /* AlertSharedItemCell.swift */,
@@ -263,6 +283,7 @@
 				E1E872529505A31BA6EDD17C40CAAD86 /* AlertView.swift */,
 				2D7853F49EA02992199EA043690E3E45 /* AlertViewStyle.swift */,
 				7ABBD0414D050320B48F5A3C3828C512 /* AlertViewStyleKit.swift */,
+				8942BDFA22169C62000D0990 /* GokuAlertSetting.swift */,
 			);
 			name = Alert;
 			path = Source/Classes/Alert;
@@ -405,6 +426,7 @@
 				823F5FD331017042A13F9E2DC6B3277C /* AlertAttributes.swift in Sources */,
 				7D1705E7C2EA5CD68F457522F5B72201 /* AlertDescription.swift in Sources */,
 				CAD18116DD66171C94E4DAB7BE07E923 /* AlertDSL.swift in Sources */,
+				8942BDF52215843B000D0990 /* GokuAnimation.swift in Sources */,
 				806A2966B42CC38F8124B7AC1A0F0784 /* AlertExtensions.swift in Sources */,
 				D27910CB3CA3124EBCD0D5632BE5408E /* AlertItem.swift in Sources */,
 				438D94B5A861FC3CA0E77EADE8EB4FBA /* AlertItemStyle.swift in Sources */,
@@ -413,17 +435,20 @@
 				37AD77194E8469F50F84CE163070552A /* AlertMakerEditable.swift in Sources */,
 				A8D5827C0D9E6AA492704E3863FBE722 /* AlertMakerExtendable.swift in Sources */,
 				14236C57E9F4B0BD5DB5903B195BA6C5 /* AlertMakerFinalizable.swift in Sources */,
+				8942BDFB22169C62000D0990 /* GokuAlertSetting.swift in Sources */,
 				74E448283FD644EB7FC8C1EDA845FE1F /* AlertPrompt.swift in Sources */,
 				0B89AEF3096A5F6D5609DDCD2A439E4A /* AlertSharedItemCell.swift in Sources */,
 				969CF082DD112E63094D2B84E1E7AF3F /* AlertStyle.swift in Sources */,
 				4A7CB93C0E4581C0EB2D673F63119215 /* AlertTarget.swift in Sources */,
 				1FC0F8DF58F5737439D69151E9F4D14E /* AlertTheme.swift in Sources */,
+				8942BDF722164FF2000D0990 /* GokuAlertViewController.swift in Sources */,
 				9F051FA8B52B93947511D10CE3DAD9E9 /* AlertView+Extension.swift in Sources */,
 				28530C5EE0DC4DBA90D391034C1DC014 /* AlertView.swift in Sources */,
 				8F01E3BF62045019B40E15E47D226E8C /* AlertViewControllerDSL.swift in Sources */,
 				FAF0016DEA763DB3DC0B96C98D844A58 /* AlertViewStyle.swift in Sources */,
 				25D50F6D385C905FFD9229E1F7209FB8 /* AlertViewStyleKit.swift in Sources */,
 				E0F5D806AB60A5E516C38CAAD688D6F8 /* CGFloatExtensions.swift in Sources */,
+				8942BDF9221699AB000D0990 /* GokuAlertRootView.swift in Sources */,
 				9F9329A6260FF318EFDB629E83D88122 /* CGSizeExtensions.swift in Sources */,
 				7F11571C52A7C9ABA4D085C690EC9099 /* Goku-dummy.m in Sources */,
 				FAF1B0A78834FBF8C4E25D23EDEF3B35 /* IntExtensions.swift in Sources */,
@@ -633,8 +658,7 @@
 				MTL_FAST_MATH = YES;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				STRIP_INSTALLED_PRODUCT = NO;
-				SWIFT_COMPILATION_MODE = wholemodule;
-				SWIFT_OPTIMIZATION_LEVEL = "-O";
+				SWIFT_OPTIMIZATION_LEVEL = "-Owholemodule";
 				SWIFT_VERSION = 4.2;
 				SYMROOT = "${SRCROOT}/../build";
 			};

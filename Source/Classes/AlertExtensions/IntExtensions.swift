@@ -2,7 +2,7 @@
 //  Goku (https://github.com/shiwei93/Goku)
 //
 //
-//  Copyright (c) 2017 shiwei (https://szewei.me/)
+//  Copyright (c) 2019 shiwei93 (https://szewei.me/)
 //
 //  Permission is hereby granted, free of charge, to any person obtaining a copy
 //  of this software and associated documentation files (the "Software"), to deal
@@ -24,7 +24,7 @@
 
 import Foundation
 
-internal extension Int {
+extension Int {
     static let baseTag: Int = 946073
     static let sharedItemOnOneColumn: Int = 3
 }

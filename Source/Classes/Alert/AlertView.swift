@@ -2,7 +2,7 @@
 //  Goku (https://github.com/shiwei93/Goku)
 //
 //
-//  Copyright (c) 2017 shiwei (https://szewei.me/)
+//  Copyright (c) 2019 shiwei93 (https://szewei.me/)
 //
 //  Permission is hereby granted, free of charge, to any person obtaining a copy
 //  of this software and associated documentation files (the "Software"), to deal
@@ -246,7 +246,7 @@ final class AlertView: UIViewController, UITextFieldDelegate, UIViewControllerTr
      AlertItemStyle => .Default(String, ButtonTitleColor, ButtonBackgroundColor) / .Cancel(String) / .Destructive(String)
      
      */
-    internal convenience init(with theme: AlertTheme,
+    convenience init(with theme: AlertTheme,
                               preferredStyle: AlertViewStyle,
                               title: String?,
                               message: String?,
@@ -284,7 +284,7 @@ final class AlertView: UIViewController, UITextFieldDelegate, UIViewControllerTr
         buttons = addButtons(with: buttonStyles)
     }
     
-    internal convenience init(with theme: AlertTheme,
+    convenience init(with theme: AlertTheme,
                               preferredStyle: AlertViewStyle,
                               shares: [AlertSharedItem],
                               cancelButton: AlertItemStyle?,

@@ -2,7 +2,7 @@
 //  Goku (https://github.com/shiwei93/Goku)
 //
 //
-//  Copyright (c) 2017 shiwei (https://szewei.me/)
+//  Copyright (c) 2019 shiwei93 (https://szewei.me/)
 //
 //  Permission is hereby granted, free of charge, to any person obtaining a copy
 //  of this software and associated documentation files (the "Software"), to deal
@@ -22,66 +22,64 @@
 //  OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 //  SOFTWARE.
 
-#if os(iOS)
-    import UIKit
-#endif
+import UIKit
 
-internal struct AlertAttributes: OptionSet {
+struct AlertAttributes: OptionSet {
     
-    internal init(rawValue: UInt) {
+    init(rawValue: UInt) {
         self.rawValue = rawValue
     }
-    internal init(_ rawValue: UInt) {
+    init(_ rawValue: UInt) {
         self.init(rawValue: rawValue)
     }
-    internal init(nilLiteral: ()) {
+    init(nilLiteral: ()) {
         self.rawValue = 0
     }
     
-    internal private(set) var rawValue: UInt
-    internal static var allZeros: AlertAttributes { return self.init(0) }
-    internal static func convertFromNilLiteral() -> AlertAttributes { return self.init(0) }
-    internal var boolValue: Bool { return self.rawValue != 0 }
+    private(set) var rawValue: UInt
+    static var allZeros: AlertAttributes { return self.init(0) }
+    static func convertFromNilLiteral() -> AlertAttributes { return self.init(0) }
+    var boolValue: Bool { return self.rawValue != 0 }
     
-    internal func toRaw() -> UInt { return self.rawValue }
-    internal static func fromRaw(_ raw: UInt) -> AlertAttributes? { return self.init(raw) }
-    internal static func fromMask(_ raw: UInt) -> AlertAttributes { return self.init(raw) }
+    func toRaw() -> UInt { return self.rawValue }
+    static func fromRaw(_ raw: UInt) -> AlertAttributes? { return self.init(raw) }
+    static func fromMask(_ raw: UInt) -> AlertAttributes { return self.init(raw) }
     
     // normal
-    internal static var theme: AlertAttributes { return self.init(2) } /// Default theme
-    internal static var customize: AlertAttributes { return self.init(4) } /// Custom theme
-    internal static var alert: AlertAttributes { return self.init(8) }
-    internal static var actionSheet: AlertAttributes { return self.init(16) }
+    static var theme: AlertAttributes { return self.init(2) } /// Default theme
+    static var customize: AlertAttributes { return self.init(4) } /// Custom theme
+    static var alert: AlertAttributes { return self.init(8) }
+    static var actionSheet: AlertAttributes { return self.init(16) }
     
     // MARK: - Alert Style
     // Alert style list: normal, success, failure, warning, notice, question
-    internal static var success: AlertAttributes { return self.init(32) }
-    internal static var failure: AlertAttributes { return self.init(64) }
-    internal static var warning: AlertAttributes { return self.init(128) }
-    internal static var notice: AlertAttributes { return self.init(256) }
-    internal static var question: AlertAttributes { return self.init(512) }
+    static var success: AlertAttributes { return self.init(32) }
+    static var failure: AlertAttributes { return self.init(64) }
+    static var warning: AlertAttributes { return self.init(128) }
+    static var notice: AlertAttributes { return self.init(256) }
+    static var question: AlertAttributes { return self.init(512) }
     
     // MARK: - Share
     // Show action sheet for social sharing
-    internal static var share: AlertAttributes { return self.init(2048) }
+    static var share: AlertAttributes { return self.init(2048) }
     
     // Custom Alert View Content
-    internal static var owner: AlertAttributes { return self.init(1024) }
+    static var owner: AlertAttributes { return self.init(1024) }
     
 }
 
-internal func + (left: AlertAttributes, right: AlertAttributes) -> AlertAttributes {
+func + (left: AlertAttributes, right: AlertAttributes) -> AlertAttributes {
     return left.union(right)
 }
 
-internal func +=(left: inout AlertAttributes, right: AlertAttributes) {
+func +=(left: inout AlertAttributes, right: AlertAttributes) {
     left.formUnion(right)
 }
 
-internal func -=(left: inout AlertAttributes, right: AlertAttributes) {
+func -=(left: inout AlertAttributes, right: AlertAttributes) {
     left.subtract(right)
 }
 
-internal func ==(left: AlertAttributes, right: AlertAttributes) -> Bool {
+func ==(left: AlertAttributes, right: AlertAttributes) -> Bool {
     return left.rawValue == right.rawValue
 }

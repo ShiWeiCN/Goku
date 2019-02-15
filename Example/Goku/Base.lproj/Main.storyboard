@@ -12,7 +12,7 @@
         <!--Goku-->
         <scene sceneID="6GC-Dg-mop">
             <objects>
-                <tableViewController id="5K6-j6-dVc" sceneMemberID="viewController">
+                <tableViewController id="5K6-j6-dVc" customClass="ViewController" customModule="Goku_Example" customModuleProvider="target" sceneMemberID="viewController">
                     <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="static" style="grouped" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="18" sectionFooterHeight="18" id="yu2-OU-ToB">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>

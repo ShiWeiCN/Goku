@@ -2,7 +2,7 @@
 //  Goku (https://github.com/shiwei93/Goku)
 //
 //
-//  Copyright (c) 2017 shiwei (https://szewei.me/)
+//  Copyright (c) 2019 shiwei93 (https://szewei.me/)
 //
 //  Permission is hereby granted, free of charge, to any person obtaining a copy
 //  of this software and associated documentation files (the "Software"), to deal
@@ -22,9 +22,7 @@
 //  OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 //  SOFTWARE.
 
-#if os(iOS)
-    import UIKit
-#endif
+import UIKit
 
 public class AlertMaker {
     
@@ -47,17 +45,17 @@ public class AlertMaker {
     private let item: AlertTargetItem
     private var description: AlertDescription? = nil
     
-    internal init(item: AlertTargetItem) {
+    init(item: AlertTargetItem) {
         self.item = item
     }
     
-    internal func makeExtendable(with attributes: AlertAttributes) -> AlertMakerExtendable {
+    func makeExtendable(with attributes: AlertAttributes) -> AlertMakerExtendable {
         let description = AlertDescription(item: self.item, attributes: attributes)
         self.description = description
         return AlertMakerExtendable(description)
     }
     
-    internal static func presentAlert(item: AlertTargetItem, animated: Bool, closure: (_ make: AlertMaker) -> Void) -> AlertView {
+    static func presentAlert(item: AlertTargetItem, animated: Bool, closure: (_ make: AlertMaker) -> Void) -> AlertView {
         let maker = AlertMaker(item: item)
         closure(maker)
         guard maker.description != nil else {
@@ -72,15 +70,15 @@ public class AlertMaker {
         return self.assembleAlertView(with: description)
     }
     
-    fileprivate static let defaultActionSheet: UInt = AlertAttributes.actionSheet.toRaw() + AlertAttributes.theme.toRaw()
+    private static let defaultActionSheet: UInt = AlertAttributes.actionSheet.toRaw() + AlertAttributes.theme.toRaw()
     fileprivate static let customActionSheet: UInt = AlertAttributes.actionSheet.toRaw() + AlertAttributes.customize.toRaw()
     
-    fileprivate static let defaultAlert: UInt = AlertAttributes.alert.toRaw() + AlertAttributes.theme.toRaw()
-    fileprivate static let customAlert: UInt = AlertAttributes.alert.toRaw() + AlertAttributes.customize.toRaw()
+    private static let defaultAlert: UInt = AlertAttributes.alert.toRaw() + AlertAttributes.theme.toRaw()
+    private static let customAlert: UInt = AlertAttributes.alert.toRaw() + AlertAttributes.customize.toRaw()
     
-    fileprivate static let sharedAlert: UInt = AlertAttributes.share.toRaw()
+    private static let sharedAlert: UInt = AlertAttributes.share.toRaw()
     
-    fileprivate static func assembleAlertView(with description: AlertDescription) -> AlertView {
+    private static func assembleAlertView(with description: AlertDescription) -> AlertView {
         // Style
         var style: AlertViewStyle
         let rawValue = description.attributes.toRaw()
@@ -109,7 +107,7 @@ public class AlertMaker {
                          tapClosure: description.closure)
     }
     
-    fileprivate static func alertStyle(by rawValue: UInt) -> AlertViewStyle {
+    private static func alertStyle(by rawValue: UInt) -> AlertViewStyle {
         
         let rawValue1: AlertAttributes = AlertAttributes.fromMask(rawValue - defaultAlert)
         let rawValue2: AlertAttributes = AlertAttributes.fromMask(rawValue - customAlert)

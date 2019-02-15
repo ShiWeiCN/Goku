@@ -23,7 +23,13 @@ class ViewController: UITableViewController {
         case (0, 2): break
         case (1, 0): break
         case (1, 1): break
-        case (2, 0): break
+        case (2, 0):
+            goku.presentAlert(animated: true) { (make) in
+                make.theme
+                    .success
+                    .title("Congratulations!")
+                    .cancel("I know")
+            }
         case (2, 1): break
         case (2, 2): break
         case (2, 3): break

@@ -2,7 +2,7 @@
 //  Goku (https://github.com/shiwei93/Goku)
 //
 //
-//  Copyright (c) 2017 shiwei (https://szewei.me/)
+//  Copyright (c) 2019 shiwei93 (https://szewei.me/)
 //
 //  Permission is hereby granted, free of charge, to any person obtaining a copy
 //  of this software and associated documentation files (the "Software"), to deal
@@ -26,7 +26,7 @@
     import UIKit
 #endif
 
-internal protocol AlertDSL {
+protocol AlertDSL {
     
     var target: AnyObject? { get }
     
@@ -34,56 +34,56 @@ internal protocol AlertDSL {
     func label() -> String?
 }
 
-internal extension AlertDSL {
-    internal func setLabel(_ value: String?) {
+extension AlertDSL {
+    func setLabel(_ value: String?) {
         objc_setAssociatedObject(self.target as Any, &labelKey, value, .OBJC_ASSOCIATION_COPY_NONATOMIC)
     }
-    internal func label() -> String? {
+    func label() -> String? {
         return objc_getAssociatedObject(self.target, &labelKey) as? String
     }
 }
 
-internal var labelKey: UInt8 = 0
+var labelKey: UInt8 = 0
 
-internal protocol AlertBasicAttributesDSL: AlertDSL { }
+protocol AlertBasicAttributesDSL: AlertDSL { }
 
-internal extension AlertBasicAttributesDSL {
+extension AlertBasicAttributesDSL {
     
     /// Default theme
-    internal var theme: AlertItem {
+    var theme: AlertItem {
         return AlertItem(target: self.target, attributes: AlertAttributes.theme)
     }
     
     /// Custom theme
-    internal var customize: AlertItem {
+    var customize: AlertItem {
         return AlertItem(target: self.target, attributes: AlertAttributes.customize)
     }
     
-    internal var actionSheet: AlertItem {
+    var actionSheet: AlertItem {
         return AlertItem(target: self.target, attributes: AlertAttributes.actionSheet)
     }
     
-    internal var alert: AlertItem {
+    var alert: AlertItem {
         return AlertItem(target: self.target, attributes: AlertAttributes.alert)
     }
     
-    internal var success: AlertItem {
+    var success: AlertItem {
         return AlertItem(target: self.target, attributes: AlertAttributes.success)
     }
     
-    internal var failure: AlertItem {
+    var failure: AlertItem {
         return AlertItem(target: self.target, attributes: AlertAttributes.failure)
     }
     
-    internal var warning: AlertItem {
+    var warning: AlertItem {
         return AlertItem(target: self.target, attributes: AlertAttributes.warning)
     }
     
-    internal var notice: AlertItem {
+    var notice: AlertItem {
         return AlertItem(target: self.target, attributes: AlertAttributes.notice)
     }
     
-    internal var question: AlertItem {
+    var question: AlertItem {
         return AlertItem(target: self.target, attributes: AlertAttributes.question)
     }
     

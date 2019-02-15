@@ -2,7 +2,7 @@
 //  Goku (https://github.com/shiwei93/Goku)
 //
 //
-//  Copyright (c) 2017 shiwei (https://szewei.me/)
+//  Copyright (c) 2019 shiwei93 (https://szewei.me/)
 //
 //  Permission is hereby granted, free of charge, to any person obtaining a copy
 //  of this software and associated documentation files (the "Software"), to deal
@@ -22,15 +22,13 @@
 //  OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 //  SOFTWARE.
 
-#if os(iOS)
-    import UIKit
-#endif
+import UIKit
 
 public class AlertMakerFinalizable {
     
-    internal let description: AlertDescription
+    let description: AlertDescription
     
-    internal init(_ description: AlertDescription) {
+    init(_ description: AlertDescription) {
         self.description = description
     }
     

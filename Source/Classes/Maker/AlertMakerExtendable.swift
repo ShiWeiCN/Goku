@@ -2,7 +2,7 @@
 //  Goku (https://github.com/shiwei93/Goku)
 //
 //
-//  Copyright (c) 2017 shiwei (https://szewei.me/)
+//  Copyright (c) 2019 shiwei93 (https://szewei.me/)
 //
 //  Permission is hereby granted, free of charge, to any person obtaining a copy
 //  of this software and associated documentation files (the "Software"), to deal
@@ -22,9 +22,7 @@
 //  OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 //  SOFTWARE.
 
-#if os(iOS)
-    import UIKit
-#endif
+import UIKit
 
 public class AlertMakerExtendable: AlertMakerAlertPromptable {
     
@@ -98,7 +96,7 @@ public class AlertMakerExtendable: AlertMakerAlertPromptable {
         return self
     }
     
-    fileprivate func removeItem(ifExist item: AlertAttributes, closure: () -> Void) -> AlertMakerExtendable {
+    private func removeItem(ifExist item: AlertAttributes, closure: () -> Void) -> AlertMakerExtendable {
         if self.description.attributes.contains(item) {
             self.description.attributes -= item
         }
@@ -106,7 +104,7 @@ public class AlertMakerExtendable: AlertMakerAlertPromptable {
         return self
     }
     
-    fileprivate func makeMoreStyleAlert(_ style: AlertAttributes) {
+    private func makeMoreStyleAlert(_ style: AlertAttributes) {
         self.description.attributes += .alert
         self.description.attributes += style
     }

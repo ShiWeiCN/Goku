@@ -2,7 +2,7 @@
 //  Goku (https://github.com/shiwei93/Goku)
 //
 //
-//  Copyright (c) 2017 shiwei (https://szewei.me/)
+//  Copyright (c) 2019 shiwei93 (https://szewei.me/)
 //
 //  Permission is hereby granted, free of charge, to any person obtaining a copy
 //  of this software and associated documentation files (the "Software"), to deal
@@ -102,7 +102,7 @@ public class AlertTheme {
     
     // MARK: Initialization
     
-    internal init(overlay: AlertOverlay,
+    init(overlay: AlertOverlay,
                   backgroundColor: UIColor,
                   titleFont: Font,
                   titleColor: Color,
@@ -203,7 +203,7 @@ public class AlertTheme {
         return self
     }
     
-    internal func isBlurEffectView() -> Any {
+    func isBlurEffectView() -> Any {
         if case AlertOverlay.blurEffect(let style) = self.overlay {
             return style
         } else {

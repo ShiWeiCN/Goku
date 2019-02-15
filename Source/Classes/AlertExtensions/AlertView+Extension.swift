@@ -2,7 +2,7 @@
 //  Goku (https://github.com/shiwei93/Goku)
 //
 //
-//  Copyright (c) 2017 shiwei (https://szewei.me/)
+//  Copyright (c) 2019 shiwei93 (https://szewei.me/)
 //
 //  Permission is hereby granted, free of charge, to any person obtaining a copy
 //  of this software and associated documentation files (the "Software"), to deal
@@ -24,31 +24,32 @@
 
 import UIKit
 
-private extension Selector {
+extension Selector {
     static let viewAction = #selector(UIView.tapped(_:))
 }
 
-internal class GokuAction: NSObject {
+class GokuAction: NSObject {
     var actionDictionary: Dictionary<NSValue, () -> ()> = Dictionary()
     static let shared = GokuAction()
     override fileprivate init() { }
 }
 
-public extension UIView {
-    func action(_ f: @escaping () -> ()) {
+extension UIView {
+    public func action(_ f: @escaping () -> ()) {
         let tap = UITapGestureRecognizer(target: self, action: .viewAction)
         self.addGestureRecognizer(tap)
         GokuAction.shared.actionDictionary[NSValue(nonretainedObject: self)] = f
     }
     
-    @objc fileprivate func tapped(_ tap: UITapGestureRecognizer) {
+    @objc
+    fileprivate func tapped(_ tap: UITapGestureRecognizer) {
         if let closure = GokuAction.shared.actionDictionary[NSValue(nonretainedObject: tap.view)] {
             closure()
         } else { }
     }
 }
 
-internal extension String {
+extension String {
     func height(_ width: CGFloat, font: UIFont, lineBreakMode: NSLineBreakMode?) -> CGFloat {
         var attrib: [NSAttributedString.Key: AnyObject] = [.font: font]
         if lineBreakMode != nil {
@@ -61,7 +62,7 @@ internal extension String {
     }
 }
 
-internal extension UIView {
+extension UIView {
     @discardableResult
     func addBorder(edges: UIRectEdge, color: UIColor = UIColor(hex: 0xCBCBCB), thickness: CGFloat = 0.5) -> [UIView] {
         var borders = [UIView]()

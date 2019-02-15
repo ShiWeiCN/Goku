@@ -8,7 +8,7 @@
 
 import UIKit
 
-internal class AlertSharedItemCell: UICollectionViewCell {
+class AlertSharedItemCell: UICollectionViewCell {
     
     lazy private var sharedTitleLabel: UILabel = {
         let titleLabel = UILabel(frame: .zero)

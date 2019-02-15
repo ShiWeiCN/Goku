@@ -2,7 +2,7 @@
 //  Goku (https://github.com/shiwei93/Goku)
 //
 //
-//  Copyright (c) 2017 shiwei (https://szewei.me/)
+//  Copyright (c) 2019 shiwei93 (https://szewei.me/)
 //
 //  Permission is hereby granted, free of charge, to any person obtaining a copy
 //  of this software and associated documentation files (the "Software"), to deal
@@ -22,30 +22,27 @@
 //  OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 //  SOFTWARE.
 
-#if os(iOS)
-    import UIKit
-#endif
+import UIKit
 
-internal class AlertDescription {
+class AlertDescription {
     
-    internal typealias Closure = (_ index: Int) -> Void
+    typealias Closure = (_ index: Int) -> Void
     
-    internal var item: AlertTargetItem?
-    internal var label: String? = nil
-    internal var attributes: AlertAttributes
-    internal var prompt: AlertPrompt? = nil
-    internal var title: String? = nil
-    internal var message: String? = nil
-    internal var cancel: String? = nil
-    internal var destructive: String? = nil
-    internal var normal: [String] = [String]()
-    internal var closure: Closure? = nil
-    internal var theme: AlertTheme = AlertTheme.theme
-    internal var shares: [AlertSharedItem] = [AlertSharedItem]()
+    var item: AlertTargetItem?
+    var label: String? = nil
+    var attributes: AlertAttributes
+    var prompt: AlertPrompt? = nil
+    var title: String? = nil
+    var message: String? = nil
+    var cancel: String? = nil
+    var destructive: String? = nil
+    var normal: [String] = [String]()
+    var closure: Closure? = nil
+    var theme: AlertTheme = AlertTheme.theme
+    var shares: [AlertSharedItem] = [AlertSharedItem]()
     
     // MARK: Initialization
-    
-    internal init(item: AlertTargetItem, attributes: AlertAttributes) {
+    init(item: AlertTargetItem, attributes: AlertAttributes) {
         self.attributes = attributes
         self.item = item
     }
