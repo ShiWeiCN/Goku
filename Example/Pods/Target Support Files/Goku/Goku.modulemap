@@ -1,4 +1,4 @@
-framework module Goku {
+module Goku {
   umbrella header "Goku-umbrella.h"
 
   export *
